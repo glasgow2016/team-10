@@ -92,9 +92,9 @@ module.exports = {
 				+ "id integer PRIMARY KEY,"
 				+ "fname TEXT NOT NULL,"
 				+ "sname TEXT NOT NULL,"
-				+ "guardian integer NOT NULL,"
+				+ "guardianPhone integer NOT NULL,"
 				+ "fellowship integer,"
-				+ "FOREIGN KEY (guardian) REFERENCES Guardian (phone)," 		
+				+ "FOREIGN KEY (guardianPhone) REFERENCES Guardian (phone)," 		
 				+ "FOREIGN KEY (fellowship) REFERENCES Fellowship (id)"
 				+ ");"
 			);				
@@ -119,10 +119,10 @@ module.exports = {
 			//ChildGroupAuth
 			db.run("CREATE TABLE if not exists ChildFellowshipAuth("
 				+ "child integer NOT NULL,"
-				+ "guardian integer NOT NULL,"
-				+ "PRIMARY KEY (child, guardian),"
+				+ "guardianPhone integer NOT NULL,"
+				+ "PRIMARY KEY (child, guardianPhone),"
 				+ "FOREIGN KEY (child) REFERENCES Client(id),"
-				+ "FOREIGN KEY (guardian) REFERENCES Guardian(phone)"
+				+ "FOREIGN KEY (guardianPhone) REFERENCES Guardian(phone)"
 				+ ");"
 			);
 		});
