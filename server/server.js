@@ -18,7 +18,7 @@ console.log();
 			
 	});
 	*/
-app.get('/group_create', function(req, res) {
+app.get('/group/create', function(req, res) {
 	//add group into database
 	var journey = [];
 	var supervisor = "";
@@ -38,7 +38,7 @@ app.get('/group_create', function(req, res) {
 	
 });
 
-app.get('/group_delete', function(req, res) {
+app.get('/group/delete', function(req, res) {
 	//delete group from database
 	
 	database.group.del(/*id? or group name*/);
@@ -46,26 +46,26 @@ app.get('/group_delete', function(req, res) {
 });
 
 
-app.get('/reg_parent', function(req, res) {
+app.get('/guardian/create', function(req, res) {
 	//add journey to a group
 	var name = "";
 	var phone_num = "";
 	
-	database.client.regParent(/*name, phone_num*/);
+	database.guardian.create(/*name, phone_num*/);
 	
 });
 
-app.get('/reg_child', function(req, res) {
+app.get('/client/create', function(req, res) {
 	//add journey to a group
 	var name = "";
 	var age = 0;
 	var parent_phone = "";
 	
-	database.client.regClient(/*name, age, parent_phone*/);
+	database.client.create(/*name, age, parent_phone*/);
 	
 });
 
-app.get('/login_parent', function(req, res) {
+app.get('/guardian/login', function(req, res) {
 	//Welcome the parent
 	
 	//get the name and phone from login fields
@@ -77,7 +77,7 @@ app.get('/login_parent', function(req, res) {
 	//TODO
 });
 
-app.get('/login_child', function(req, res) {
+app.get('/client/login', function(req, res) {
 	//Welcome the child
 	
 	//get the name and parent phone from login fields
@@ -90,7 +90,7 @@ app.get('/login_child', function(req, res) {
 	
 });
 
-app.get('/add_journey', function(req, res) {
+app.get('/journey/create', function(req, res) {
 	//add journey to a group
 	var journey = [];
 	var supervisor = "";
@@ -103,7 +103,7 @@ app.get('/add_journey', function(req, res) {
 	
 });
 
-app.get('/group_join', function(req, res) {
+app.get('/group/display', function(req, res) {
 	//show who is in the group
 	
 	var group = database.group.display();
