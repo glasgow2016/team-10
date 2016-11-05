@@ -36,7 +36,7 @@ module.exports = {
 		},
 		display : function(){},	
 
-	}	
+	},	
 
 	client: {
 		refresh : function(){}
