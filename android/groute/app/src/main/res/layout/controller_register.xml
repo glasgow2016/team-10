@@ -41,7 +41,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:hint="Please enter your name"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/ageTV"
@@ -65,7 +67,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:hint="Please enter your age"
+        android:inputType="number" />
 
     <TextView
         android:id="@+id/parentsNumberTV"
@@ -89,7 +93,9 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:hint="Please enter a phone number"
+        android:inputType="phone"/>
 
     <Button
         android:id="@+id/submitButton"
