@@ -104,7 +104,7 @@ module.exports = {
 				+ "id integer PRIMARY KEY,"
 				+ "name TEXT NOT NULL,"
 				+ "fellowship integer NOT NULL,"
-				+ "supervisor integer NOT NULL,"
+				+ "supervisorPhone integer NOT NULL,"
 				+ "startTime integer NOT NULL CHECK(startTime < 2400 AND startTime > -1),"
 				+ "endTime integer CHECK(endTime < 2400 AND endTime > -1),"
 				+ "startLatitude real CHECK(startLatitude < 90.0 AND startLatitude > -90.0),"
@@ -112,7 +112,7 @@ module.exports = {
 				+ "startLongitude real CHECK(startLongitude < 80.0 AND startLongitude > -80.0),"
 				+ "endLongitude real CHECK(endLongitude < 80.0 AND endLongitude > -80.0),"
 				+ "FOREIGN KEY (fellowship) REFERENCES Fellowship (id),"
-				+ "FOREIGN KEY (supervisor) REFERENCES Guardian (phone)" 		
+				+ "FOREIGN KEY (supervisorPhone) REFERENCES Guardian (phone)" 		
 				+ ");"
 			);
 
