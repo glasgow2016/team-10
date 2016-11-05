@@ -8,7 +8,7 @@ Client(
 );
 
 Parent(
-	id,
+	phoneNumber,
 	name,
 	child REFERENCES Client.id
 );
