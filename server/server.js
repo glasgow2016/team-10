@@ -38,12 +38,20 @@ app.get('/group_create', function(req, res) {
 	
 });
 
+app.get('/group_delete', function(req, res) {
+	//delete group from database
+	
+	database.group.del(/*id? or group name*/);
+	
+});
+
+
 app.get('/reg_parent', function(req, res) {
 	//add journey to a group
-	var username = "";
+	var name = "";
 	var phone_num = "";
 	
-	database.client.regParent(/*username, phone_num*/);
+	database.client.regParent(/*name, phone_num*/);
 	
 });
 
@@ -54,6 +62,31 @@ app.get('/reg_child', function(req, res) {
 	var parent_phone = "";
 	
 	database.client.regClient(/*name, age, parent_phone*/);
+	
+});
+
+app.get('/login_parent', function(req, res) {
+	//Welcome the parent
+	
+	//get the name and phone from login fields
+	
+	console.log("Welcome");
+	console.log(database.client.getParent(/*name, phone_num*/));
+	
+	//display parent interface
+	//TODO
+});
+
+app.get('/login_child', function(req, res) {
+	//Welcome the child
+	
+	//get the name and parent phone from login fields
+	
+	console.log("Welcome");
+	console.log(database.client.getChild(/*name, parent_phone_num*/));
+	
+	//display child interface
+	//TODO
 	
 });
 
