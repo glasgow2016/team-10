@@ -15,9 +15,8 @@ import butterknife.OnClick;
 
 public class HomeController extends ButterKnifeController {
 
-
     @OnClick(R.id.registerButton)
-    void submitButtonBlicked(){
+    void registerButtonClicked(){
         getRouter().pushController(RouterTransaction.with(new RegisterController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())

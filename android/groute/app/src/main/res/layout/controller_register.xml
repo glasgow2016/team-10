@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:padding="15dp"
+        android:padding="40dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
         android:text="Register"
@@ -19,91 +19,26 @@
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
 
-    <TextView
-        android:id="@+id/nameTV"
+    <Button
+        android:id="@+id/registerChildButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv1"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Name"
-        android:textStyle="bold"
-        android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/nameEdittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nameTV"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/colourPrimaryDark"
+        android:layout_marginTop="40dp"
+        android:text="   Register child   "
+        android:layout_centerHorizontal="true"
         android:textSize="24sp"
-        android:hint="Please enter your name"
-        android:inputType="text" />
-
-    <TextView
-        android:id="@+id/ageTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/nameEdittext"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Age"
-        android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/ageEdittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ageTV"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp"
-        android:hint="Please enter your age"
-        android:inputType="number" />
-
-    <TextView
-        android:id="@+id/parentsNumberTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ageEdittext"
-        android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Parent's phone number no."
-        android:textStyle="bold"
-        android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/parentsNumberEdittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/parentsNumberTV"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/colourPrimaryDark"
-        android:textSize="24sp"
-        android:hint="Please enter a phone number"
-        android:inputType="phone"/>
+        android:layout_below="@id/tv1"/>
 
     <Button
-        android:id="@+id/submitButton"
-        android:layout_width="match_parent"
+        android:id="@+id/registerParentButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:layout_marginTop="40dp"
+        android:text="   Register parent   "
+        android:layout_centerHorizontal="true"
         android:textSize="24sp"
         android:textColor="@color/colourPrimaryDark"
-        android:layout_below="@id/parentsNumberEdittext"/>
+        android:layout_below="@id/registerChildButton"/>
 
 </RelativeLayout>
