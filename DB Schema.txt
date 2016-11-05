@@ -1,0 +1,39 @@
+Schema
+
+Client(
+	id,
+	name,
+	parent REFERENCES Parent.id,
+	group REFERENCES Group.id,
+);
+
+Parent(
+	id,
+	name,
+	child REFERENCES Client.id
+);
+
+Group(
+	id,
+	name,
+	creator REFERENCES Parent.id
+);
+
+Journey(
+	id,	
+	name,
+	group REFERENCES Group.id,
+	supervisor REFERENCES Parent.id,
+	startTime,
+	endTime,
+	startLatitude,
+	startLongitude,
+	endLatitude,
+	endLongitude
+);
+
+ChildGroupAuth(
+	child REFERENCES Client.id,
+	parent REFERENCES Parent.id
+);
+
