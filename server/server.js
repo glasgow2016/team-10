@@ -34,7 +34,7 @@ app.get('/group/create', function(req, res) {
 	//a group can have no journey but it is advised to
 	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
 	
-	if (journey.length() == 0){
+	if (journey.length == 0){
 		console.log("Please add a journey into your group");
 	}
 	

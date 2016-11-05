@@ -70,7 +70,7 @@ module.exports = {
 			//Consider ON DELETE CASCADE for foreign keys
 			//db.run("DROP TABLE Test");
 			
-			//Parent
+			//Guardian
 			db.run("CREATE TABLE if not exists Guardian("
 				+ "phone integer PRIMARY KEY,"
 				+ "fname TEXT NOT NULL,"
@@ -78,12 +78,12 @@ module.exports = {
 				+ ");"
 			);	
 
-			//Group
+			//Fellowship
 			db.run("CREATE TABLE if not exists Fellowship("
 				+ "id integer PRIMARY KEY,"
 				+ "name TEXT NOT NULL,"
 				+ "creator integer NOT NULL,"
-				+ "FOREIGN KEY (creator) REFERENCES Guardian (id)" 		
+				+ "FOREIGN KEY (creator) REFERENCES Guardian (phone)" 		
 				+ ");"
 			);	
 
@@ -94,7 +94,7 @@ module.exports = {
 				+ "sname TEXT NOT NULL,"
 				+ "guardian integer NOT NULL,"
 				+ "fellowship integer,"
-				+ "FOREIGN KEY (guardian) REFERENCES Guardian (id)," 		
+				+ "FOREIGN KEY (guardian) REFERENCES Guardian (phone)," 		
 				+ "FOREIGN KEY (fellowship) REFERENCES Fellowship (id)"
 				+ ");"
 			);				
@@ -112,7 +112,7 @@ module.exports = {
 				+ "startLongitude real CHECK(startLongitude < 80.0 AND startLongitude > -80.0),"
 				+ "endLongitude real CHECK(endLongitude < 80.0 AND endLongitude > -80.0),"
 				+ "FOREIGN KEY (fellowship) REFERENCES Fellowship (id),"
-				+ "FOREIGN KEY (supervisor) REFERENCES Guardian (id)" 		
+				+ "FOREIGN KEY (supervisor) REFERENCES Guardian (phone)" 		
 				+ ");"
 			);
 
@@ -122,7 +122,7 @@ module.exports = {
 				+ "guardian integer NOT NULL,"
 				+ "PRIMARY KEY (child, guardian),"
 				+ "FOREIGN KEY (child) REFERENCES Client(id),"
-				+ "FOREIGN KEY (guardian) REFERENCES Guardian(id)"
+				+ "FOREIGN KEY (guardian) REFERENCES Guardian(phone)"
 				+ ");"
 			);
 		});

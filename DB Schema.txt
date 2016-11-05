@@ -2,28 +2,29 @@ Schema
 
 Client(
 	id,
-	name,
-	parent REFERENCES Parent.id,
-	group REFERENCES Group.id,
+	fname,
+	sname,
+	guardian REFERENCES Guardian.id,
+	fellowship REFERENCES Fellowship.id
 );
 
-Parent(
+Guardian(
 	phoneNumber,
-	name,
-	child REFERENCES Client.id
+	fname,
+	sname
 );
 
-Group(
+Fellowship(
 	id,
 	name,
-	creator REFERENCES Parent.id
+	creator REFERENCES Guardian.id
 );
 
 Journey(
 	id,	
 	name,
-	group REFERENCES Group.id,
-	supervisor REFERENCES Parent.id,
+	fellowship REFERENCES Group.id,
+	supervisor REFERENCES Guardian.id,
 	startTime,
 	endTime,
 	startLatitude,
@@ -34,6 +35,6 @@ Journey(
 
 ChildGroupAuth(
 	child REFERENCES Client.id,
-	parent REFERENCES Parent.id
+	guardian REFERENCES Guardian.id
 );
 
