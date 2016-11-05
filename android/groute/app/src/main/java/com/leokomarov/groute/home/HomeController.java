@@ -9,16 +9,15 @@ import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.register.RegisterController;
+import com.leokomarov.groute.register.RegisterChildController;
 
 import butterknife.OnClick;
 
 public class HomeController extends ButterKnifeController {
 
-
     @OnClick(R.id.registerButton)
-    void submitButtonBlicked(){
-        getRouter().pushController(RouterTransaction.with(new RegisterController())
+    void registerButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new RegisterChildController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );
