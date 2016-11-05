@@ -95,7 +95,9 @@ var createTables = function()
 }
 
 module.exports = {
+	
 	group : {
+		
 		create : function(){
 			/*
 			var stmt = db.prepare("INSERT INTO Client VALUES (?)");	
@@ -103,10 +105,15 @@ module.exports = {
 
 			stmt.finalize();
 			*/
-
-			return "Hello!";
+			
 		},
-		display : function(){},	
+		display : function(){
+			/*
+			module.exports.clients.push("Hello");
+			
+			return module.exports.clients;
+			*/
+		},	
 	},	
 
 	client: {

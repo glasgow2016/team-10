@@ -1,6 +1,5 @@
-package com.leokomarov.groute.mainscreen;
+package com.leokomarov.groute.register;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,21 +9,12 @@ import android.view.ViewGroup;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 
-public class MainScreenController extends ButterKnifeController {
-    public String username;
-    public String id;
-
-    public MainScreenController(Bundle bundle){
-        super(bundle);
-    }
-
-    public MainScreenController(String username){
-        this.username = username;
-    }
+public class RegisterController extends ButterKnifeController {
+    public String client_id;
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return inflater.inflate(R.layout.controller_main, container, false);
+        return inflater.inflate(R.layout.controller_register, container, false);
     }
 
     @Override
@@ -33,11 +23,11 @@ public class MainScreenController extends ButterKnifeController {
 
         setRetainViewMode(RetainViewMode.RETAIN_DETACH);
 
-        Log.v("onViewBound", "onViewBound");
+        Log.v("register-onViewBound", "onViewBound");
     }
 
     @Override
     protected void onDestroyView(View view){
-        Log.v("onDestroy", "disconnected");
+        Log.v("register-onDestroy", "disconnected");
     }
 }

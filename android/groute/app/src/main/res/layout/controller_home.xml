@@ -18,31 +18,29 @@
         android:textStyle="bold"
         android:text="groute"/>
 
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/tv1"
-        android:padding="5dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/colourPrimary"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:text="Enter a username"/>
-
-    <EditText
-        android:id="@+id/edittext1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tv2"/>
+    <ImageView
+        android:id="@+id/imageview1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/tv1"/>
 
     <Button
-        android:id="@+id/submitButton"
+        android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Login"
+        android:layout_marginBottom="30dp"
+        android:textSize="24sp"
         android:textColor="@color/colourPrimaryDark"
-        android:layout_below="@id/edittext1"/>
+        android:layout_below="@id/imageview1"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"
+        android:layout_below="@id/loginButton"/>
 
 </RelativeLayout>
