@@ -87,12 +87,5 @@ public class RegisterChildController extends ButterKnifeController {
     protected void onViewBound(@NonNull View view) {
         super.onViewBound(view);
         setRetainViewMode(RetainViewMode.RETAIN_DETACH);
-
-        Log.v("register-onViewBound", "onViewBound");
-    }
-
-    @Override
-    protected void onDestroyView(View view){
-        Log.v("register-onDestroy", "disconnected");
     }
 }
