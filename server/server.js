@@ -38,10 +38,34 @@ app.get('/group_create', function(req, res) {
 	
 });
 
+app.get('/reg_parent', function(req, res) {
+	//add journey to a group
+	var username = "";
+	var phone_num = "";
+	
+	database.client.regParent(/*username, phone_num*/);
+	
+});
+
+app.get('/reg_child', function(req, res) {
+	//add journey to a group
+	var name = "";
+	var age = 0;
+	var parent_phone = "";
+	
+	database.client.regClient(/*name, age, parent_phone*/);
+	
+});
+
 app.get('/add_journey', function(req, res) {
 	//add journey to a group
 	var journey = [];
-	journey = database.journey.create(/*supervisor, start, end*/);
+	var supervisor = "";
+	var start_time = 0;
+	var end_time = 0;
+	var start_loc = 0;
+	var end_loc = 0;
+	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
 	database.group.addJourney(journey);
 	
 });
