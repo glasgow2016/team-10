@@ -44,7 +44,7 @@ var createTables = function()
 		+ "group integer,"
 		+ "FOREIGN KEY (parent) REFERENCES Parent (id)," 		
 		+ "FOREIGN KEY (group) REFERENCES Group (id)"
-		+ ");";
+		+ ");"
 	);
 
 	//Parent
@@ -54,7 +54,7 @@ var createTables = function()
 		+ "sname TEXT NOT NULL,"
 		+ "child integer NOT NULL,"
 		+ "FOREIGN KEY (child) REFERENCES Client (id)" 		
-		+ ");";
+		+ ");"
 	);	
 
 	//Group

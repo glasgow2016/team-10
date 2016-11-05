@@ -21,7 +21,7 @@ console.log();
 app.get('/group_create', function(req, res) {
 	//add group into database
 	var journey = [];
-	var supervisor = "":
+	var supervisor = "";
 	var start_time = 0;
 	var end_time = 0;
 	var start_loc = 0;
