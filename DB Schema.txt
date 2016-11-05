@@ -2,6 +2,7 @@ Schema
 
 Client(
 	id,
+	age,
 	fname,
 	sname,
 	guardian REFERENCES Guardian.id,

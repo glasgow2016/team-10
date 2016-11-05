@@ -27,40 +27,43 @@ module.exports = {
 	disconnect : function(db){
 		db.close()
 	},
+
+	isChild : function(id){
+
+	},
 	
-	group : {
-		
-		create : function(){
+	group : {		
+		create : function(name, journey){
+			
+		},
+		delete : function(){},
+		display : function(user_id){},
+		join : function(user_id){},	
+		addJourney: function(journey){},
+	},	
+
+	guardian : {
+		create : function(name, phone_num){},
+		login : function(name, phone_num){}
+	},
+
+	client: {
+		create : function(name, age, parent_phone_num){
 			var db = this.getConnection()
-			/*
+			
 			var stmt = db.prepare("INSERT INTO Client VALUES (?)");	
 			stmt.run("ColumnName #data")
 
 			stmt.finalize();
-			*/
+			
 			this.disconnect(db);
-			
 		},
-		display : function(){
-			/*
-			module.exports.clients.push("Hello");
-			
-			return module.exports.clients;
-			*/
-		},
-		join : function(){},	
-		addJourney: function(){}
-	},	
-
-	client: {
-		refresh : function(){},	
-		create : function(name, age, parentPhoneNum){}
+		login : function(name, parent_phone_num){}
 	},
 
 	journey : {
-		create : function(){}
+		create : function(supervisor, start_loc, end_loc, start_time, end_time){}
 	},
-
 
 	createTables : function()
 	{
@@ -90,6 +93,7 @@ module.exports = {
 			//Client
 			db.run("CREATE TABLE if not exists Client("
 				+ "id integer PRIMARY KEY,"
+				+ "age integer NOT NULL CHECK(age > 0),"
 				+ "fname TEXT NOT NULL,"
 				+ "sname TEXT NOT NULL,"
 				+ "guardianPhone integer NOT NULL,"

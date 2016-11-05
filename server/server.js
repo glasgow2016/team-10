@@ -49,6 +49,23 @@ app.get('/group/delete', function(req, res) {
 	
 });
 
+app.get('/group/display', function(req, res) {
+	//show who is in the group
+	
+	var group = database.group.display();
+	
+	group.forEach(function(entry){
+			
+			console.log(entry);
+			
+	});
+		
+	res.sendFile(__dirname + '/index.html');
+});
+
+app.get('/group/join', function(req, res){
+
+});
 
 app.get('/guardian/create', function(req, res) {
 	//add journey to a group
@@ -56,16 +73,6 @@ app.get('/guardian/create', function(req, res) {
 	var phone_num = "";
 	
 	database.guardian.create(/*name, phone_num*/);
-	
-});
-
-app.get('/client/create', function(req, res) {
-	//add journey to a group
-	var name = "";
-	var age = 0;
-	var parent_phone = "";
-	
-	database.client.create(/*name, age, parent_phone*/);
 	
 });
 
@@ -79,6 +86,15 @@ app.get('/guardian/login', function(req, res) {
 	
 	//display parent interface
 	//TODO
+});
+
+app.get('/client/create', function(req, res) {
+	//add journey to a group
+	var name = "";
+	var age = 0;
+	var parent_phone = "";
+	
+	database.client.create(/*name, age, parent_phone*/);	
 });
 
 app.get('/client/login', function(req, res) {
@@ -103,22 +119,7 @@ app.get('/journey/create', function(req, res) {
 	var start_loc = 0;
 	var end_loc = 0;
 	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
-	database.group.addJourney(journey);
-	
-});
-
-app.get('/group/display', function(req, res) {
-	//show who is in the group
-	
-	var group = database.group.display();
-	
-	group.forEach(function(entry){
-			
-			console.log(entry);
-			
-	});
-		
-	res.sendFile(__dirname + '/index.html');
+	database.group.addJourney(journey);	
 });
 
 app.get('/database', function(req, res) {
