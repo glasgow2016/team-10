@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colourAccentDark"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:text="Register"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimary"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Name"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/nameEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/ageTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameEdittext"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Age"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/ageEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ageTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/parentsNumberTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ageEdittext"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Parent's phone number no."
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/parentsNumberEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/parentsNumberTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"
+        android:layout_below="@id/parentsNumberEdittext"/>
+
+</RelativeLayout>
