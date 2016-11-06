@@ -68,11 +68,13 @@ app.get('/guardian/auth/p', function(req, res) {
 	
 });
 
-app.get('/guardian/get', function(req, res) {
+app.get('/guardian/get/p', function(req, res) {
 	
-	database.guardian.get(/*parent phone number*/);
+	var phone_num = req.query.phone_num;
 	
-	//return phone_num, fname, sname;
+	var guardian_info = database.guardian.get(phone_num);
+	
+	return guardian_info;
 	
 });
 
