@@ -163,30 +163,38 @@ app.get('/fellowship/get', function(req, res) {
 	//return name, child list, parents
 });
 
-app.get('/journey/create', function(req, res) {
+app.get('/journey/create/p', function(req, res) {
 	//add journey to a group
-	var journey = [];
-	var supervisor = "";
-	var start_time = 0;
-	var end_time = 0;
-	var start_loc = 0;
-	var end_loc = 0;
-	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
-	database.group.addJourney(journey);	
+
+	var phone_num = req.query.phone_num;
+	var start_loc = req.query.start_loc;
+	var end_loc = req.query.end_loc;
+	var start_time = req.query.start_time;
+	var end_time = req.query.end_time;
+	
+	database.journey.create(phone_num, start_loc, end_loc, start_time, end_time);
+	
+	//return journey_id;
+	
 });
 
 
-app.get('/journey/start', function(req, res) {
+app.get('/journey/start/p', function(req, res) {
 	//start a journey
+	var journey_id = req.query.journey_id;
+	var start_time = req.query.start_time;
 	
-	database.journey.start(/*journey id, time*/);
+	database.journey.start(journey_id, start_time);
 		
 });
 
 app.get('/journey/end', function(req, res) {
 	//end a journey
 	
-	database.journey.end(/*journey id, time*/);
+	var journey_id = req.query.journey_id;
+	var start_time = req.query.start_time;
+	
+	database.journey.end(journey_id, start_time);
 		
 });
 
