@@ -24,15 +24,16 @@ database.createTables();
 	*/
 	
 
-app.get('/client/create', function(req, res) {
-	//add journey to a group
-	//var id = req.query.tagId;
+app.get('/client/create/p', function(req, res) {
+	//creating client
 	
-	var name = "";
-	var age = 0;
-	var parent_phone = "";
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var age = req.query.age;
+	var phone_num = req.query.phone_num;
+
+	database.client.create(fname, sname, age, phone_num);
 	
-	database.client.create(/*name, age, parent_phone*/);	
 });
 
 app.get('/client/login', function(req, res) {
