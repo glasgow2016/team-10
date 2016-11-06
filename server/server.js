@@ -162,8 +162,17 @@ app.get('/fellowship/join', function(req, res) {
 	var client_id = req.query.client_id;
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.join(client_id, fellow_id);
-	//return success bool;
+	database.fellowship.join(client_id, fellow_id, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 
 });
 
