@@ -23,7 +23,6 @@ Fellowship(
 
 Journey(
 	id,	
-	name,
 	fellowship REFERENCES Group.id,
 	supervisor REFERENCES Guardian.id,
 	startTime,
