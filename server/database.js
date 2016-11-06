@@ -70,10 +70,14 @@ module.exports = {
 		get : function(fellowship_id, callback){
 			var db = module.exports.getConnection();
 
-			db.get("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
-				callback(row);
-				//return phonenumber, fname, sname
-			});
+			//db.get("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
+				//callback(row);
+
+				db.each("SELECT id FROM Client INNER JOIN Fellowship ON Client.fellowship = Fellowship.id", function(e, r){
+					callback(r);
+				});
+				
+			//});
 
 			db.close();
 
@@ -82,7 +86,10 @@ module.exports = {
 		join : function(client_id, fellowship_id, callback){
 			var db = module.exports.getConnection();	
 
-
+			db.run("UPDATE Client SET fellowship = " + fellowship_id + " WHERE Client.id = " + client_id, function(err, row){
+				callback(true);
+			});
+			db.close();
 			//return success boolean
 			
 		},	
@@ -132,8 +139,7 @@ module.exports = {
 
 			db.get("SELECT phone FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone WHERE id = " + client_id, function(err, row){
 				stmt.run([client_id, row['phone']]);
-			});
-			
+			});			
 
 			//return nothing
 		},
