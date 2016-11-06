@@ -81,24 +81,22 @@ app.get('/guardian/get/p', function(req, res) {
 app.get('/guardian/login', function(req, res) {
 	//Welcome the parent
 	
-	//get the name and phone from login fields
-	
 	console.log("Welcome");
-	console.log(database.client.getParent(/*name, phone_num*/));
+	var phone_num = req.query.phone_num;
+	
+	database.guardian.login(phone_num);	
 	
 	//display parent interface
-	//TODO
+	//TODO?
+	
 });
 
 app.get('/fellowship/delete/p', function(req, res) {
 	//delete group from database
 	
 	var id = req.query.tagId;
-	var name = req.query.name;
-	console.log(name);
-	console.log(id);
 	
-	database.fellowship.del(/*id*/);
+	database.fellowship.del(id);
 	
 });
 
