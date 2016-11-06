@@ -42,19 +42,21 @@ app.get('/client/login/p', function(req, res) {
 	var id = req.query.tagId;
 	
 	console.log("Welcome");
-	console.log(database.client.login(id));
+	database.client.login(id);
 	
 	//display child interface
 	//TODO?
 	
 });
 
-app.get('/guardian/create', function(req, res) {
-	//add journey to a group
-	var name = "";
-	var phone_num = "";
+app.get('/guardian/create/p', function(req, res) {
+	//create guardian
 	
-	database.guardian.create(/*name, phone_num*/);
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var phone_num = req.query.phone_num;
+
+	database.guardian.create(fname, sname, phone_num);
 	
 });
 
