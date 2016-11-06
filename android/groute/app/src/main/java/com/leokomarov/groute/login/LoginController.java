@@ -1,4 +1,4 @@
-package com.leokomarov.groute.home;
+package com.leokomarov.groute.login;
 
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -9,24 +9,22 @@ import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.login.LoginController;
-import com.leokomarov.groute.register.RegisterController;
 
 import butterknife.OnClick;
 
-public class HomeController extends ButterKnifeController {
+public class LoginController extends ButterKnifeController {
 
-    @OnClick(R.id.loginButton)
-    void loginButtonClicked(){
-        getRouter().pushController(RouterTransaction.with(new LoginController())
+    @OnClick(R.id.loginChildButton)
+    void registerChildButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new ChildLoginController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );
     }
 
-    @OnClick(R.id.registerButton)
-    void registerButtonClicked(){
-        getRouter().pushController(RouterTransaction.with(new RegisterController())
+    @OnClick(R.id.loginParentButton)
+    void registerParentButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new ParentLoginController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );
@@ -34,7 +32,7 @@ public class HomeController extends ButterKnifeController {
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return inflater.inflate(R.layout.controller_home, container, false);
+        return inflater.inflate(R.layout.controller_login, container, false);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.leokomarov.groute.dashboard;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,9 @@ public class SuperviseJourneyController extends ButterKnifeController {
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
+
+        Log.v("sup", "sup inflate");
+
         return inflater.inflate(R.layout.controller_journey_supervise, container, false);
     }
 
