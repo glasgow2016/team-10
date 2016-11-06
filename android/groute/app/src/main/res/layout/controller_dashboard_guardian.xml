@@ -14,9 +14,59 @@
         android:padding="15dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:text="Dashboard - guardian"
+        android:text="Parent dashboard"
         android:textStyle="bold"
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
+
+    <Button
+        android:id="@+id/isThisMyChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="20dp"
+        android:text="Is this my child?"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"/>
+
+    <Button
+        android:id="@+id/authoriseChild"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/isThisMyChild"
+        android:layout_marginTop="20dp"
+        android:text="Authorise child"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"/>
+
+    <Button
+        android:id="@+id/createFellowship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/authoriseChild"
+        android:layout_marginTop="20dp"
+        android:text="Create group"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"/>
+
+    <Button
+        android:id="@+id/createJourney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createFellowship"
+        android:layout_marginTop="20dp"
+        android:text="Create journey"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"/>
+
+    <Button
+        android:id="@+id/superviseJourney"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createJourney"
+        android:layout_marginTop="20dp"
+        android:text="Supervise journey"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"/>
 
 </RelativeLayout>
