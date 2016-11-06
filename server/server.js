@@ -219,7 +219,7 @@ app.get('/fellowship/get', function(req, res) {
 		res.json(json_object);
 		
 	});
-	
+
 	/*
 	var group = database.group.display();
 	
@@ -233,6 +233,16 @@ app.get('/fellowship/get', function(req, res) {
 	*/
 	
 	//return name, child list, parents
+});
+
+app.get('/fellowship/addPoints', function(req, res) {
+	
+	//add points
+	var journey_id = req.query.journey_id;
+	var points = req.query.points;
+	
+	database.fellowship.addPoints(journey_id, points);
+
 });
 
 app.get('/journey/create', function(req, res) {
@@ -258,7 +268,6 @@ app.get('/journey/create', function(req, res) {
 	});
 	
 });
-
 
 app.get('/journey/get', function(req, res) {
 	
