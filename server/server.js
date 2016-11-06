@@ -24,9 +24,9 @@ database.createTables();
 	*/
 	
 
-app.get('/client/create/p', function(req, res) {
+app.get('/client/create', function(req, res) {
 	//creating client
-	
+	console.log('CREATE');
 	var fname = req.query.fname;
 	var sname = req.query.sname;
 	var age = req.query.age;
