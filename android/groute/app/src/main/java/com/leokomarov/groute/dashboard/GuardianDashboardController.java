@@ -59,6 +59,14 @@ public class GuardianDashboardController extends ButterKnifeController {
         );
     }
 
+    @OnClick(R.id.endJourney)
+    void endJourneyButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new EndJourneyController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         return inflater.inflate(R.layout.controller_dashboard_guardian, container, false);

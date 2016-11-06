@@ -21,6 +21,22 @@ public class FellowshipDetailsController extends ButterKnifeController {
         );
     }
 
+    @OnClick(R.id.nextJourneyButton)
+    void nextJourneyButtonButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new JourneyDetailsController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
+    @OnClick(R.id.dailyChallengeButton)
+    void dailyChallengeButtonButtonButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new DailyChallengesController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
         return inflater.inflate(R.layout.controller_fellowship_details, container, false);

@@ -14,7 +14,7 @@
         android:padding="15dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:text="Journey"
+        android:text="End of journey"
         android:textStyle="bold"
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
@@ -53,7 +53,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Start time: 8.30am"
+        android:text="Started at: 8.30am"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
@@ -66,20 +66,22 @@
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="End time: 9.00am"
+        android:text="Ended at: 9.00am"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/dailyChallengeButton"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/completedJourneyTV"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/endTimeTV"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Daily challenge"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Completed"
+        android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="30sp" />
+        android:textSize="48sp" />
 
 </RelativeLayout>

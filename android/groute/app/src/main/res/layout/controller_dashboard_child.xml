@@ -69,6 +69,17 @@
         android:textColor="@color/colourPrimary"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/dailyChallengeButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nextJourneyButton"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:text="Daily challenge"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="30sp" />
+
     <TextView
         android:id="@+id/placeholderTV"
         android:layout_width="wrap_content"

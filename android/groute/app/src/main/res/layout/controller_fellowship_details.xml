@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:text="Group details here"
+        android:text="Group #1"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="80sp"
@@ -47,27 +47,26 @@
         android:textColor="@color/colourPrimaryDark"
         android:textSize="10sp" />
 
-    <TextView
-        android:id="@+id/nextJourneyTV"
+    <Button
+        android:id="@+id/nextJourneyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/detailsTV"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Next journey details"
+        android:text="Next journey is tomorrow at 8.30am from G11 6QQ"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/dailyChallengeTV"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/dailyChallengeButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/nextJourneyTV"
+        android:layout_below="@id/nextJourneyButton"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
         android:text="Daily challenge"
-        android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="30sp" />
 
@@ -79,6 +78,6 @@
         android:text="Profile"
         android:textSize="24sp"
         android:textColor="@color/colourPrimaryDark"
-        android:layout_below="@id/dailyChallengeTV"/>
+        android:layout_below="@id/dailyChallengeButton"/>
 
 </RelativeLayout>

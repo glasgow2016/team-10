@@ -14,72 +14,84 @@
         android:padding="15dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:text="Journey"
+        android:text="Daily challenges"
         android:textStyle="bold"
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
 
     <TextView
-        android:id="@+id/startLocationTV"
+        android:id="@+id/tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv1"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Start location: G11 6QQ"
+        android:text="Jane Smith"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/endLocationTV"
+        android:id="@+id/tv3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/startLocationTV"
+        android:layout_below="@id/tv2"
         android:layout_marginTop="30dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="End location: G12 8NS"
+        android:text="Teaching"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/startTimeTV"
+        android:id="@+id/tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/endLocationTV"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/tv3"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Start time: 8.30am"
+        android:text="Kids"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/endTimeTV"
+        android:id="@+id/tv5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/startTimeTV"
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/tv4"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:text="End time: 9.00am"
+        android:text="About"
         android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/dailyChallengeButton"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/endTimeTV"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:text="Daily challenge"
+        android:layout_below="@id/tv5"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Safety"
+        android:textStyle="bold"
         android:textColor="@color/colourPrimaryDark"
-        android:textSize="30sp" />
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv6"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Badges"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
 
 </RelativeLayout>
