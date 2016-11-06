@@ -86,12 +86,19 @@ module.exports = {
 			//return success boolean
 			
 		},	
-		addJourney: function(journey_id, fellowship_id){
+		addJourney : function(journey_id, fellowship_id){
 			//return void
+			//assume journey already created
+			var db = module.exports.getConnection();
+			db.run("UPDATE Journey SET fellowship = " + fellowship_id + " WHERE id = " + journey_id);
+			db.close();
 		},
 		deleteJourney : function(journey_id, fellowship_ip){
 			//return void
-		}
+			var db = module.exports.getConnection();
+			db.run("UPDATE Journey SET fellowship = null WHERE id = " + journey_id)
+			db.close();
+		}	
 	},	
 
 	guardian : {
@@ -178,7 +185,7 @@ module.exports = {
 			var db = module.exports.getConnection()
 			var stmt = db.prepare("INSERT INTO Journey VALUES (?,?,?,?,?,?,?,?,?)");	
 
-			var vals = [null, fellowship_id, supervisorPhone, start_time, end_time, start_loc[0], start_loc[1], end_loc[0], end_loc[1]];
+			var vals = [null, null, supervisorPhone, start_time, end_time, start_loc[0], start_loc[1], end_loc[0], end_loc[1]];
 			stmt.run(vals, function(err, row){
 				db.get("SELECT last_insert_rowid() FROM Journey", function(e, r){				
 					callback(r["last_insert_rowid()"]);
@@ -259,7 +266,7 @@ module.exports = {
 			//Journey
 			db.run("CREATE TABLE if not exists Journey("
 				+ "id integer PRIMARY KEY AUTOINCREMENT,"			
-				+ "fellowship integer NOT NULL,"
+				+ "fellowship integer,"
 				+ "supervisorPhone integer NOT NULL,"
 				+ "startTime integer NOT NULL CHECK(startTime < 2400 AND startTime > -1),"
 				+ "endTime integer CHECK(endTime < 2400 AND endTime > -1),"
