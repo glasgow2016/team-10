@@ -10,21 +10,16 @@ import com.leokomarov.groute.controllers.ButterKnifeController;
 
 import butterknife.OnClick;
 
-public class SuperviseJourneyController extends ButterKnifeController {
+public class CreateFellowshipController extends ButterKnifeController {
 
-    @OnClick(R.id.acceptButton)
-    void acceptButtonClicked(){
-        getRouter().popCurrentController();
-    }
-
-    @OnClick(R.id.rejectButton)
-    void rejectButtonClicked(){
+    @OnClick(R.id.submitButton)
+    void submitButtonClicked(){
         getRouter().popCurrentController();
     }
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return inflater.inflate(R.layout.controller_journey_supervise, container, false);
+        return inflater.inflate(R.layout.controller_fellowship_create, container, false);
     }
 
     @Override
