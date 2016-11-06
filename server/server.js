@@ -192,7 +192,15 @@ app.get('/fellowship/get', function(req, res) {
 	var fellow_id = req.query.fellow_id;
 	
 	database.fellowship.get(fellow_id,function(entry){
+		
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
 	});
 	
 	/*
