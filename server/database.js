@@ -56,6 +56,7 @@ module.exports = {
 				ret = {};
 				ret.clients = [];
 				ret.name = r[0].name;
+				ret.points = r[0].points;
 									
 				r.forEach(function(n){
 					ret.clients.push(n.id);
@@ -95,7 +96,13 @@ module.exports = {
 			var db = module.exports.getConnection();
 			db.run("UPDATE Journey SET fellowship = null WHERE id = " + journey_id)
 			db.close();
-		}	
+		},
+
+		addPoints : function(journey_id, points){
+			var db = module.exports.getConnection();
+			db.run("UPDATE Fellowship SET points = points  + " + points + " WHERE id = " + journey_id);
+			db.close();
+		}
 	},	
 
 	//aka parent
@@ -107,7 +114,7 @@ module.exports = {
 			var stmt = db.prepare("INSERT INTO Guardian VALUES (?,?,?)");
 			stmt.run([parseInt(phone_num), fname, sname]);
 			stmt.finalize();
-			//return void
+			//return void as we already know guardian primary key
 		},
 
 		//dummy login function
@@ -173,6 +180,15 @@ module.exports = {
 			db.close();
 		},
 
+		getPoints : function(client_id, callback){
+			var db = module.exports.getConnection();
+
+			db.get("SELECT points FROM Client WHERE id = " client_id, function(err, row){
+				callback(row);
+			});
+
+		},
+
 		//dummy login functionality
 		login : function(client_id){
 			//return nothing
@@ -188,7 +204,12 @@ module.exports = {
 			});
 
 			db.close();
-		}
+		},
+		addPoints(client_id, points){
+			var db = module.exports.getConnection();
+			db.run("UPDATE Client SET points = points  + " + points + " WHERE id = " + client_id);
+			db.close();
+		}		
 	},
 
 	journey : {
