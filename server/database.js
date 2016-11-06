@@ -1,26 +1,16 @@
 var fs = require("fs");
 var file = "text.db";
-
 var sqlite3 = require("sqlite3").verbose();
 
-var tables = [
-	"Client" ,
- 	"Guardian",
- 	"Fellowship",
- 	"Journey",
- 	"ChildFellowshipAuth"
- ];
-
-var clientCount = (function(){
-
-})();
-
 module.exports = {
+
+	//return an instance of the database
 	getConnection : function(){
 		return new sqlite3.Database(file);
 	}, 
 	
 	fellowship : {		
+		//create a group and add it to the database
 		create : function(name, creator_phone_num, callback){
 
 			var db = module.exports.getConnection();
@@ -36,6 +26,7 @@ module.exports = {
 			db.close();	
 		},
 
+		//remove a single group
 		delete : function(fellowship_id){
 				
 			var db = module.exports.getConnection();
@@ -45,6 +36,7 @@ module.exports = {
 			//return void
 		},
 
+		//return all of the groups in the database
 		getAll : function(callback){
 			var db = module.exports.getConnection();
 
@@ -55,6 +47,7 @@ module.exports = {
 			db.close();
 		},
 
+		//return a group's details
 		get : function(fellowship_id, callback){
 			var db = module.exports.getConnection();
 
@@ -75,6 +68,8 @@ module.exports = {
 
 			//return name, list of children, list of parents
 		},
+
+		//alllow a child to join the group
 		join : function(client_id, fellowship_id, callback){
 			var db = module.exports.getConnection();	
 
@@ -85,6 +80,8 @@ module.exports = {
 			//return success boolean
 			
 		},	
+
+		//add an existing journey to the group
 		addJourney : function(journey_id, fellowship_id){
 			//return void
 			//assume journey already created
@@ -92,6 +89,7 @@ module.exports = {
 			db.run("UPDATE Journey SET fellowship = " + fellowship_id + " WHERE id = " + journey_id);
 			db.close();
 		},
+		//remove a journey from the group
 		deleteJourney : function(journey_id, fellowship_ip){
 			//return void
 			var db = module.exports.getConnection();
@@ -100,7 +98,9 @@ module.exports = {
 		}	
 	},	
 
+	//aka parent
 	guardian : {
+		//create an instance of a parent and add it to the database
 		create : function(fname, sname, phone_num){
 
 			var db = module.exports.getConnection();
@@ -109,20 +109,25 @@ module.exports = {
 			stmt.finalize();
 			//return void
 		},
+
+		//dummy login function
 		login : function(phone_num){
 			//return void
 		},
+
+		//get a specific parent by their phone number
 		get : function(phone_num, callback){
 			
 			var db = module.exports.getConnection();
 
 			db.each("SELECT * FROM Guardian WHERE phone = " + phone_num, function(err, row){
-				callback(row);
-				//return phonenumber, fname, sname
+				callback(row);				
 			});
 
 			db.close();
 		},
+
+		//allow a child to join a group
 		auth : function(client_id){
 			//allowing child to join a group
 			var db = module.exports.getConnection();
@@ -135,6 +140,8 @@ module.exports = {
 
 			//return nothing
 		},
+
+		//return all of the parents in the database
 		getAll : function(callback){
 			var db = module.exports.getConnection();
 
@@ -146,7 +153,11 @@ module.exports = {
 		}
 	},
 
+	//aka child
 	client: {
+	
+		//create a child and add to the database
+		//returns the child's ID
 		create : function(fname, sname, age, guardian_phone, callback){
 			var db = module.exports.getConnection()
 			
@@ -160,12 +171,14 @@ module.exports = {
 			stmt.finalize();
 			
 			db.close();
-
-			//return id
 		},
+
+		//dummy login functionality
 		login : function(client_id){
 			//return nothing
 		},
+
+		//get all of the children
 		getAll : function(callback)
 		{
 			var db = module.exports.getConnection();
@@ -179,6 +192,9 @@ module.exports = {
 	},
 
 	journey : {
+
+		//Creates a journey in the database
+		//returns journey ID
 		create : function(fellowship_id, supervisorPhone, start_loc, end_loc, start_time, end_time, callback){
 			var db = module.exports.getConnection()
 			var stmt = db.prepare("INSERT INTO Journey VALUES (?,?,?,?,?,?,?,?,?)");	
@@ -188,16 +204,14 @@ module.exports = {
 				db.get("SELECT last_insert_rowid() FROM Journey", function(e, r){				
 					callback(r["last_insert_rowid()"]);
 				});	
-			});
-			
+			});			
 
 			stmt.finalize();
 			
-			db.close();
-
-
-			//return journey_id
+			db.close();			
 		},
+
+		//timestamps the start of a journey
 		start : function(journey_id, time, children_present){
 			var db = module.exports.getConnection();
 
@@ -205,6 +219,8 @@ module.exports = {
 
 			db.close()
 		},
+
+		//timestamps the end of a journey
 		end : function(journey_id, time){
 			var db = module.exports.getConnection();
 
@@ -212,13 +228,16 @@ module.exports = {
 
 			db.close()
 		},
+
+		//returns all of the journeys for a given fellowship
 		get : function(fellowship_id, callback){
-			var db = module.exports.getConnection();
-			//return all journeys for a given group id
+			var db = module.exports.getConnection();			
 			db.all("SELECT * FROM Journey WHERE Journey.fellowship = " + fellowship_id, function(err, rows){
 				callback(rows);
 			});
 		},
+
+		//return all journeys
 		getAll : function(callback){
 			var db = module.exports.getConnection();
 
@@ -230,6 +249,7 @@ module.exports = {
 		}
 	},
 
+	//scripts for creating all of the database tables
 	createTables : function()
 	{
 		var db = module.exports.getConnection();
@@ -251,6 +271,7 @@ module.exports = {
 				+ "id integer PRIMARY KEY AUTOINCREMENT,"
 				+ "name TEXT NOT NULL,"
 				+ "creatorPhone integer NOT NULL,"
+				+ "points integer DEFAULT (0),"
 				+ "FOREIGN KEY (creatorPhone) REFERENCES Guardian (phone)" 		
 				+ ");"
 			);	
@@ -263,6 +284,7 @@ module.exports = {
 				+ "sname TEXT NOT NULL,"
 				+ "guardianPhone integer NOT NULL,"
 				+ "fellowship integer,"
+				+ "points integer DEFAULT (0),"
 				+ "FOREIGN KEY (guardianPhone) REFERENCES Guardian (phone)," 		
 				+ "FOREIGN KEY (fellowship) REFERENCES Fellowship (id)"
 				+ ");"
