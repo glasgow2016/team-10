@@ -230,8 +230,9 @@ app.get('/journey/start', function(req, res) {
 	//start a journey
 	var journey_id = req.query.journey_id;
 	var start_time = req.query.start_time;
+	var child_present = req.query.child_present;
 	
-	database.journey.start(journey_id, start_time);
+	database.journey.start(journey_id, start_time, child_present);
 		
 });
 
