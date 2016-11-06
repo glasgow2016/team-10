@@ -14,8 +14,8 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.dashboard.ChildDashboardController;
 import com.leokomarov.groute.db.Client;
+import com.leokomarov.groute.login.ChildLoginController;
 
 import java.util.HashMap;
 
@@ -69,6 +69,10 @@ public class RegisterChildController extends ButterKnifeController {
         call.enqueue(new Callback<Client>() {
             @Override
                 public void onResponse(Call<Client> call, Response<Client> response) {
+
+                    Log.v("register-child", String.format("response: %s", response));
+                    Log.v("register-child", String.format("response raw: %s", response.raw()));
+
                     int statusCode = response.code();
                     int id = response.body().getId();
 
@@ -88,7 +92,7 @@ public class RegisterChildController extends ButterKnifeController {
             }
         });
 
-        getRouter().pushController(RouterTransaction.with(new ChildDashboardController())
+        getRouter().pushController(RouterTransaction.with(new ChildLoginController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );

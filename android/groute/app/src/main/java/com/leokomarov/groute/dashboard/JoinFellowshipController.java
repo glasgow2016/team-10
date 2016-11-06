@@ -13,6 +13,8 @@ import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 import com.leokomarov.groute.db.Fellowship;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 
 import butterknife.OnClick;
@@ -30,12 +32,18 @@ public class JoinFellowshipController extends ButterKnifeController {
             @Override
             public void onResponse(Call<Fellowship> call, Response<Fellowship> response) {
                 int statusCode = response.code();
+
+                Log.v("register-fell", String.format("response: %s", response.raw()));
+                Log.v("register-fell", String.format("response.headers: %s", response.headers()));
+                Log.v("register-fell", String.format("response.body: %s", response.body()));
+
                 int fellowship_id = response.body().getId();
                 MainActivity.client.setFellowship(fellowship_id);
 
-                Log.v("register-fell", String.format("statusCode: %d", statusCode));
-                Log.v("register-fell", String.format("fellowship_id: %d", fellowship_id));
-                Log.v("register-fell", String.format("client fellowship_id: %d", MainActivity.client.getFellowship()));
+                Log.v("register-fellfirst", String.format("statusCode: %d", statusCode));
+                Log.v("register-fellfirst", String.format("fellowship_id: %d", fellowship_id));
+                Log.v("register-fellfirst", String.format("client fellowship_id: %d", MainActivity.client.getFellowship()));
+                Log.v("register-fellfirst", String.format("client_id: %d", MainActivity.client.getId()));
 
 
                 HashMap<String, Object> queryOptions = new HashMap<>();
@@ -43,21 +51,23 @@ public class JoinFellowshipController extends ButterKnifeController {
                 queryOptions.put("client_id", MainActivity.client.getId());
                 queryOptions.put("fellow_id", fellowship_id);
 
-                Call<Boolean> joinFellowshipCall = MainActivity.networkStuff.apiService.joinFellowship(queryOptions);
-                joinFellowshipCall.enqueue(new Callback<Boolean>() {
+                Call<JSONObject> joinFellowshipCall = MainActivity.networkStuff.apiService.joinFellowship(queryOptions);
+                joinFellowshipCall.enqueue(new Callback<JSONObject>() {
                     @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
                         int statusCode = response.code();
-                        boolean success = response.body();
+                        JSONObject success = response.body();
 
-                        Log.v("register-fell", String.format("statusCode: %d", statusCode));
-                        Log.v("register-fell", String.format("success: %b", success));
+                        Log.v("register-felljoin", String.format("statusCode: %d", statusCode));
+                        Log.v("register-felljoin", String.format("response raw: %s", response.raw()));
+                        Log.v("register-felljoin", String.format("response: %s", response));
+                        Log.v("register-felljoin", String.format("success: %s", success));
                     }
 
                     @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
+                    public void onFailure(Call<JSONObject> call, Throwable t) {
                         // Log error here since request failed
-                        Log.e("register-child", t.getMessage());
+                        Log.e("register-felljoin", t.getMessage());
                     }
                 });
 
@@ -66,7 +76,7 @@ public class JoinFellowshipController extends ButterKnifeController {
             @Override
             public void onFailure(Call<Fellowship> call, Throwable t) {
                 // Log error here since request failed
-                Log.e("register-child", t.getMessage());
+                Log.e("register-fellfirst", t.getMessage());
             }
         });
 

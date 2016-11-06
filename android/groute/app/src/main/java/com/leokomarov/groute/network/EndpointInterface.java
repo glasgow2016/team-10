@@ -52,7 +52,7 @@ public interface EndpointInterface {
     void deleteFellowship(@Query("fellowship_id") int fellowship_id);
 
     @GET("/fellowship/join")
-    Call<Boolean> joinFellowship(@QueryMap Map<String, Object> options);
+    Call<JSONObject> joinFellowship(@QueryMap Map<String, Object> options);
 
     @GET("/fellowship/addJourney")
     void addJourneyToFellowship(@QueryMap Map<String, Object> options);
