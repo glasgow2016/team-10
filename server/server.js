@@ -32,13 +32,24 @@ app.get('/client/create', function(req, res) {
 	var age = req.query.age;
 	var phone_num = req.query.phone_num;
 
-	database.client.create(fname, sname, age, phone_num);
+	var client = database.client.create(fname, sname, age, phone_num, function(entry){
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
+	
+	
 	
 });
 
 app.get('/client/login', function(req, res) {
 	//Welcome the child
-	//get the id of tthe client
+	//get the id of the client
 	var id = req.query.tagId;
 	
 	console.log("Welcome");
@@ -102,12 +113,22 @@ app.get('/fellowship/delete', function(req, res) {
 
 app.get('/fellowship/create', function(req, res) {
 	//create fellowship
-	var fname = req.query.fname;
-	var sname = req.query.sname;
+	
+	var name = req.query.name;
 	var phone_num = req.query.phone_num;
-
-	database.fellowship.create(fname, sname, phone_num);
-	//return id;
+	
+	var fellow = database.fellowship.create(name, phone_num, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
+	
 });
 
 app.get('/fellowship/addJourney', function(req, res) {
@@ -146,7 +167,9 @@ app.get('/fellowship/get', function(req, res) {
 	
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.get(fellow_id);
+	database.fellowship.get(fellow_id,function(entry){
+		console.log(entry);
+	});
 	
 	/*
 	var group = database.group.display();
@@ -164,17 +187,26 @@ app.get('/fellowship/get', function(req, res) {
 });
 
 app.get('/journey/create', function(req, res) {
+	
 	//add journey to a group
-
+	var fellow_id = req.query.fellow_id;
 	var phone_num = req.query.phone_num;
 	var start_loc = req.query.start_loc;
 	var end_loc = req.query.end_loc;
 	var start_time = req.query.start_time;
 	var end_time = req.query.end_time;
 	
-	database.journey.create(phone_num, start_loc, end_loc, start_time, end_time);
+	database.journey.create(fellow_id, phone_num, start_loc, end_loc, start_time, end_time, function(entry){
 	
-	//return journey_id;
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 	
 });
 

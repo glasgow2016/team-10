@@ -50,12 +50,22 @@ public class RegisterChildController extends ButterKnifeController {
         Toast.makeText(getActivity().getApplicationContext(), "Input valid, registering", Toast.LENGTH_LONG).show();
 
         HashMap<String, Object> queryOptions = new HashMap<>();
-        final String fname = name.split("")[0];
-        final String sname = name.split("")[1];
+        final String fname = name.split(" ")[0];
+        final String sname = name.split(" ")[1];
+        Log.v("name", name.split(" ").toString());
+        for (String s : name.split(" ")) {
+            Log.v("name", s);
+        }
+
+        //fellowship key is ignored by the server
+        queryOptions.put("id", 5);
         queryOptions.put("fname", fname);
         queryOptions.put("sname", sname);
         queryOptions.put("age", age);
         queryOptions.put("phone_num", parentsPhoneNumber);
+
+        //fellowship key is ignored by the server
+        queryOptions.put("fellowship", 5);
 
         Call<Integer> call = MainActivity.networkStuff.apiService.createClient(queryOptions);
         call.enqueue(new Callback<Integer>() {
