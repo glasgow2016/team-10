@@ -3,12 +3,10 @@ package com.leokomarov.groute.network;
 import com.leokomarov.groute.db.Fellowship;
 import com.leokomarov.groute.db.Guardian;
 
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -37,18 +35,23 @@ interface EndpointInterface {
     @GET("guardian/login")
     void loginGuardian(@Query("phone_num") int phone_num);
 
-    //groups
+    //fellowships
+    @GET("fellowship/create")
+    Call<Integer> createFellowship(@QueryMap Map<String, String> options);
 
-    @GET("group/create")
-    void createGroup(@QueryMap Map<String, String> options);
+    @GET("fellowship/get")
+    Call<Fellowship> getFellowship(@Query("fellowship_id") int fellowship_id);
 
-    @GET("group/delete")
-    void deleteGroup(@Query("user_id") int user_id);
+    @GET("fellowship/delete")
+    void deleteFellowship(@Query("fellowship_id") int fellowship_id);
 
-    @GET("group/display")
-    Call<List<Fellowship>> displayGroup(@Query("user_id") int user_id);
+    @GET("fellowship/join")
+    Call<Boolean> joinFellowship(@QueryMap Map<String, String> options);
 
-    @GET("group/{id}/users")
-    Call<List<User>> groupList(@Path("id") int groupId, @Query("sort") String sort);
+    @GET("fellowship/addJourney")
+    void addJourneyToFellowship(@QueryMap Map<String, String> options);
+
+    @GET("fellowship/deleteJourney")
+    void deleteJourneyFromFellowship(@QueryMap Map<String, String> options);
 
 }
