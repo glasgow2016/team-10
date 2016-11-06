@@ -70,15 +70,19 @@ module.exports = {
 		get : function(fellowship_id, callback){
 			var db = module.exports.getConnection();
 
-			//db.get("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
-				//callback(row);
-
-				db.each("SELECT id FROM Client INNER JOIN Fellowship ON Client.fellowship = Fellowship.id", function(e, r){
-					callback(r);
+			db.all("SELECT * FROM Fellowship INNER JOIN Client ON Client.fellowship = Fellowship.id WHERE Fellowship.id = " + fellowship_id, function(e, r){
+		
+				ret = {};
+				ret.clients = [];
+				ret.name = r[0].name;
+									
+				r.forEach(function(n){
+					ret.clients.push(n.id);
 				});
-				
-			//});
 
+				callback(ret);				
+			});
+				
 			db.close();
 
 			//return name, list of children, list of parents

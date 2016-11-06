@@ -16,9 +16,7 @@ app.get('/', function(req, res) {
 console.log("I AM HERE");
 console.log();
 
-
 database.createTables();
-
 
 	/*
 	var group = database.group.display();
@@ -30,7 +28,6 @@ database.createTables();
 	});
 	*/
 	
-
 app.get('/client/create', function(req, res) {
 	//creating client
 	
