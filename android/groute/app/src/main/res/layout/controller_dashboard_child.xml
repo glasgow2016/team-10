@@ -19,4 +19,69 @@
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:layout_below="@id/tv1"
+        android:weightSum="1"
+        android:gravity="left">
+
+        <TextView
+            android:id="@+id/profileTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginLeft="3dp"
+            android:text="John Smith, age 6"
+            android:layout_weight="0.5"
+            android:textStyle="bold"
+            android:textColor="@color/colourPrimary"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/badgeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="You have no badges"
+            android:layout_weight="0.5"
+            android:textStyle="bold"
+            android:textColor="@color/colourPrimary"
+            android:textSize="32sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/nextJourneyTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout1"
+        android:padding="15dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:text="Next journey is tomorrow at 8.30am from G12 8QQ"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimary"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/placeholderTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nextJourneyTV"
+        android:padding="15dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:text="There is 1 group nearby"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimary"
+        android:textSize="24sp" />
+
+
+
 </RelativeLayout>
