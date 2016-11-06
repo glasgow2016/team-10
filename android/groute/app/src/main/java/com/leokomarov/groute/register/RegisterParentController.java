@@ -13,7 +13,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.dashboard.DashboardController;
+import com.leokomarov.groute.dashboard.GuardianDashboardController;
 
 import java.util.HashMap;
 
@@ -58,7 +58,7 @@ public class RegisterParentController extends ButterKnifeController {
         MainActivity.guardian.setSname(sname);
         MainActivity.guardian.setPhone(phoneNumber);
 
-        getRouter().pushController(RouterTransaction.with(new DashboardController())
+        getRouter().pushController(RouterTransaction.with(new GuardianDashboardController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );
