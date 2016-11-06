@@ -25,8 +25,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.R.attr.id;
-
 public class RegisterChildController extends ButterKnifeController {
     private String name;
     private int age;
@@ -77,14 +75,6 @@ public class RegisterChildController extends ButterKnifeController {
                     int statusCode = response.code();
                     int id = response.body().getId();
 
-                    Log.v("register-child", String.format("statusCode: %d", statusCode));
-                    Log.v("register-child", String.format("call: %s", call));
-                    Log.v("register-child", String.format("response: %s", response));
-                    Log.v("register-child", String.format("response.raw: %s", response.raw()));
-                    Log.v("register-child", String.format("response.headers: %s", response.headers()));
-                    Log.v("register-child", String.format("response.isSuccessful: %s", response.isSuccessful()));
-                    Log.v("register-child", String.format("response.errorBody: %s", response.errorBody()));
-                    Log.v("register-child", String.format("response.message: %s", response.message()));
                     Log.v("register-child", String.format("id: %d", id));
 
                     MainActivity.client.setId(id);
