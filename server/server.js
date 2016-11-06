@@ -36,16 +36,16 @@ app.get('/client/create/p', function(req, res) {
 	
 });
 
-app.get('/client/login', function(req, res) {
+app.get('/client/login/p', function(req, res) {
 	//Welcome the child
-	
-	//get the name and parent phone from login fields
+	//get the id of tthe client
+	var id = req.query.tagId;
 	
 	console.log("Welcome");
-	console.log(database.client.getChild(/*name, parent_phone_num*/));
+	console.log(database.client.login(id));
 	
 	//display child interface
-	//TODO
+	//TODO?
 	
 });
 
