@@ -183,7 +183,7 @@ module.exports = {
 		getPoints : function(client_id, callback){
 			var db = module.exports.getConnection();
 
-			db.get("SELECT points FROM Client WHERE id = " client_id, function(err, row){
+			db.get("SELECT points FROM Client WHERE id = " + client_id, function(err, row){
 				callback(row);
 			});
 
@@ -247,7 +247,7 @@ module.exports = {
 
 			db.run("UPDATE Journey SET endTime = " + time + " WHERE id = " + journey_id);
 
-			db.close()
+			db.close();
 		},
 
 		//returns all of the journeys for a given fellowship
