@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colourAccentDark"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="30dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:text="Parent login"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimary"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Your name: "
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/nameEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="24sp"
+        android:hint="Please enter your name"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Login"
+        android:textSize="24sp"
+        android:textColor="@color/colourPrimaryDark"
+        android:layout_below="@id/nameEdittext"/>
+
+</RelativeLayout>
