@@ -14,7 +14,7 @@
         position: absolute;
         top: 728.8px;
         left: 137.7px;
-        border: 1px solid red;
+        
     }
 
     .register {
@@ -23,11 +23,11 @@
         position: absolute;
         top: 860px;
         left: 137.7px;
-        border: 1px solid red;
+        
     }
 
     #mainImg {
-        background-image: url("images/groute.gif");
+        background-image: url("images/1_welcome.gif");
         background-size: contain;
         height: 1334px;
         width: 750px;
@@ -37,9 +37,9 @@
         height: 90px;
         width: 456px;
         position: absolute;
-        top: 379px;
+        top: 599px;
         left: 150px;
-        border: 1px solid red;
+        
         font-size: 48px;
         display: none;
     }
@@ -51,7 +51,7 @@
         position: absolute;
         top: 598px;
         left: 153px;
-        border: 1px solid red;
+        
         font-size: 48px;
         display: none;
     }
@@ -62,7 +62,7 @@
         position: absolute;
         top: 832px;
         left: 153px;
-        border: 1px solid red;
+        
         font-size: 48px;
         display: none;
     }
@@ -71,20 +71,82 @@
         height: 107px;
         width: 474px;
         position: absolute;
-        top: 1103.8px;
-        left: 139.7px;
-        border: 1px solid red;
+        top: 797px;
+        left: 142px;
+        
         display: none;
     }
 
-    #testito {
-        height: 107px;
-        width: 474px;
+    .pin {
+        height: 100px;
+        width: 100px;
         position: absolute;
-        top: 900.8px;
-        left: 139.7px;
-        border: 1px solid red;
-    }    
+        top: 510.8px;
+        left: 99.7px;
+        
+        display: none;
+    }  
+
+    .avatar {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        top: 360.8px;
+        left: 289.7px;
+        
+        display: none;
+    }   
+
+    .backToGroup {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 30.8px;
+        left: 29.7px;
+        
+        display: none;
+    }  
+
+    .backToDashboard {
+        height: 100px;
+        width: 100px;
+        position: absolute;
+        top: 30.8px;
+        left: 29.7px;
+        
+        display: none;
+    }   
+
+    .journey {
+        height: 100px;
+        width: 240px;
+        position: absolute;
+        top: 1002.8px;
+        left: 84.7px;
+        
+        display: none;
+    }
+
+    .challenge {
+        height: 160px;
+        width: 610px;
+        position: absolute;
+        top: 1152.8px;
+        left: 64.7px;
+        
+        display: none;
+    }
+
+    .end {
+        height: 160px;
+        width: 610px;
+        position: absolute;
+        top: 222.8px;
+        left: 76.7px;
+        
+        display: none;
+    }
+
 
     header, section, footer, aside, nav, article, figure, audio, video, canvas  { display:block; }
   </style>
@@ -95,48 +157,103 @@
     <div class='login'></div>
     <div class='register'></div>
     <div class='submit'></div>
+    <div class='pin'></div>
+    <div class='avatar'></div>
+    <div class='backToGroup'></div>
+    <div class='backToDashboard'></div>
+    <div class='journey'></div>
+    <div class='challenge'></div> 
+    <div class='end'></div>
+
     <input type='text' class='name'>
-    <input type='text' class='age'>
-    <input type='text' class='parentsno'>
   </div>   
 <script>
   $(document).ready(function(){
 
 
-    $(".register").click(function(){
+    $(".login").click(function(){
 
-        $("#mainImg").css("background-image","url(images/regChild.gif)");
+        $("#mainImg").css("background-image","url(images/2_login.gif)");
         $(".login").hide();
         $(".register").hide();
         $(".name").show();
-        $(".age").show();
-        $(".parentsno").show();
         $(".submit").show();
-    });
+    }); 
 
+    $(".submit").click(function(){
 
-      $(".login").click(function(){
-        alert("login");
+        $("#mainImg").css("background-image","url(images/3_joinGroup.gif)");
+        $(".name").hide();
+        $(".submit").hide();
+        $(".pin").show();
 
-      });
-      $(".submit").click(function(){
         console.log("CRY");
-        var surname = $(".name").val();
-        var surname = surname.split(" ");
-        console.log(surname);
+        // var surname = $(".name").val();
+        // var surname = surname.split(" ");
+        // console.log(surname);
         
-        $.ajax({
-          dataType: "json",
-          data: JSON.stringify({fname:"adam", sname:"adamovic", guardian_phone:"0790112345"}),
-          url:"http://localhost:3000/client/create",
-          contentType: "application/json",
+        // $.ajax({
+        //   dataType: "json",
+        //   data: {fname:"adam", sname:"adamovic", age:"12", phone_num:"0790112345"},
+        //   url:"http://localhost:3000/client/create",
+        //   contentType: "application/json",
+
+        // });
+        // $.ajax({
+        //   dataType: "json",
+        //   data: {fname:"adam", sname:"adamovic", phone_num:"0790112345"},
+        //   url:"http://localhost:3000/guardian/create",
+        //   contentType: "application/json",
+        //   complete
+        // });
 
         });
 
-      });
-
     });  
   
+    $(".pin").click(function(){
+        $("#mainImg").css("background-image","url(images/4_group.gif)");
+        $(".avatar").show();
+        $(".pin").hide();
+    });   
+
+    $(".avatar").click(function(){
+        $(".backToGroup").show();
+        $("#mainImg").css("background-image","url(images/5_profile.gif)");
+        $(".avatar").hide();
+        $(".pin").hide();
+    });  
+
+    $(".backToGroup").click(function(){
+        $("#mainImg").css("background-image","url(images/4_group.gif)");
+        $(".backToDashboard").show();
+        $(".backToGroup").hide();
+
+    });
+
+    $(".backToDashboard").click(function(){
+        $("#mainImg").css("background-image","url(images/6_dashboard.gif)");
+        $(".backToDashboard").hide();
+        $(".journey").show();
+    });
+
+    $(".journey").click(function(){
+        $("#mainImg").css("background-image","url(images/7_journey.gif)");
+        $(".backToDashboard").show();
+        $(".journey").hide();
+        $(".challenge").show();
+    });
+
+    $(".challenge").click(function(){
+        $("#mainImg").css("background-image","url(images/8_dailyChallenge.gif)");
+        $(".challenge").hide();
+        $(".end").show();
+    });
+
+    $(".end").click(function(){
+        $("#mainImg").css("background-image","url(images/9_endOfJourney.gif)");
+        $(".end").hide();
+    });
 
 
 </script>

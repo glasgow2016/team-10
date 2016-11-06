@@ -79,7 +79,7 @@ app.get('/client/addPoints', function(req, res){
 
 app.get('/guardian/create', function(req, res) {
 	//create guardian
-	
+	console.log(req);
 	var fname = req.query.fname;
 	var sname = req.query.sname;
 	var phone_num = req.query.phone_num;
