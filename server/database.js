@@ -86,12 +86,19 @@ module.exports = {
 			//return success boolean
 			
 		},	
-		addJourney: function(journey_id, fellowship_id){
+		addJourney : function(journey_id, fellowship_id){
 			//return void
+			//assume journey already created
+			var db = module.exports.getConnection();
+			db.run("UPDATE Journey SET fellowship = " + fellowship_id + " WHERE id = " + journey_id);
+			db.close();
 		},
 		deleteJourney : function(journey_id, fellowship_ip){
 			//return void
-		}
+			var db = module.exports.getConnection();
+			db.run("UPDATE Journey SET fellowship = null WHERE id = " + journey_id)
+			db.close();
+		}	
 	},	
 
 	guardian : {
@@ -119,6 +126,15 @@ module.exports = {
 		},
 		auth : function(client_id){
 			//allowing child to join a group
+			var db = module.exports.getConnection();
+
+			var stmt = db.prepare("INSERT INTO ChildFellowshipAuth VALUES (?,?)");
+
+			db.get("SELECT phone FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone WHERE id = " + client_id, function(err, row){
+				stmt.run([client_id, row['phone']]);
+			});
+			
+
 			//return nothing
 		},
 		getAll : function(callback){
@@ -137,7 +153,7 @@ module.exports = {
 			var db = module.exports.getConnection()
 			
 			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?,?)");	
-			stmt.run([null, fname, sname, age, guardian_phone, null], function(err, row){
+			stmt.run([null, age, fname, sname, guardian_phone, null], function(err, row){
 				db.get("SELECT last_insert_rowid() FROM Client", function(e, r){				
 					callback(r["last_insert_rowid()"]);
 				});	
@@ -169,7 +185,7 @@ module.exports = {
 			var db = module.exports.getConnection()
 			var stmt = db.prepare("INSERT INTO Journey VALUES (?,?,?,?,?,?,?,?,?)");	
 
-			var vals = [null, fellowship_id, supervisorPhone, start_time, end_time, start_loc[0], start_loc[1], end_loc[0], end_loc[1]];
+			var vals = [null, null, supervisorPhone, start_time, end_time, start_loc[0], start_loc[1], end_loc[0], end_loc[1]];
 			stmt.run(vals, function(err, row){
 				db.get("SELECT last_insert_rowid() FROM Journey", function(e, r){				
 					callback(r["last_insert_rowid()"]);
@@ -184,7 +200,7 @@ module.exports = {
 
 			//return journey_id
 		},
-		start : function(journey_id, time){
+		start : function(journey_id, time, children_present){
 			var db = module.exports.getConnection();
 
 			db.run("UPDATE Journey SET startTime = " + time + " WHERE id = " + journey_id);
@@ -250,7 +266,7 @@ module.exports = {
 			//Journey
 			db.run("CREATE TABLE if not exists Journey("
 				+ "id integer PRIMARY KEY AUTOINCREMENT,"			
-				+ "fellowship integer NOT NULL,"
+				+ "fellowship integer,"
 				+ "supervisorPhone integer NOT NULL,"
 				+ "startTime integer NOT NULL CHECK(startTime < 2400 AND startTime > -1),"
 				+ "endTime integer CHECK(endTime < 2400 AND endTime > -1),"
@@ -263,7 +279,7 @@ module.exports = {
 				+ ");"
 			);
 
-			//ChildGroupAuth
+			//ChildFellowshipAuth
 			db.run("CREATE TABLE if not exists ChildFellowshipAuth("
 				+ "child integer NOT NULL,"
 				+ "guardianPhone integer NOT NULL,"
@@ -277,4 +293,3 @@ module.exports = {
 		db.close();
 	}	
 }
-
