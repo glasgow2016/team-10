@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 
-public class DashboardController extends ButterKnifeController {
+public class ChildDashboardController extends ButterKnifeController {
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
-        return inflater.inflate(R.layout.controller_dashboard, container, false);
+        return inflater.inflate(R.layout.controller_dashboard_child, container, false);
     }
 
     @Override

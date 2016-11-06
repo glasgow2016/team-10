@@ -14,7 +14,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.dashboard.DashboardController;
+import com.leokomarov.groute.dashboard.ChildDashboardController;
 import com.leokomarov.groute.db.Client;
 
 import java.util.HashMap;
@@ -53,9 +53,6 @@ public class RegisterChildController extends ButterKnifeController {
         HashMap<String, Object> queryOptions = new HashMap<>();
         final String fname = name.split(" ")[0];
         final String sname = name.split(" ")[1];
-        for (String s : name.split(" ")) {
-            Log.v("name", s);
-        }
 
         //fellowship key is ignored by the server
         queryOptions.put("id", 0);
@@ -91,7 +88,7 @@ public class RegisterChildController extends ButterKnifeController {
             }
         });
 
-        getRouter().pushController(RouterTransaction.with(new DashboardController())
+        getRouter().pushController(RouterTransaction.with(new ChildDashboardController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );

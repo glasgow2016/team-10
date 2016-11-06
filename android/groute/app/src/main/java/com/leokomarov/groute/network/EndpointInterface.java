@@ -25,7 +25,7 @@ public interface EndpointInterface {
 
     //guardians
     @GET("/guardian/create")
-    void createGuardian(@QueryMap Map<String, Object> options);
+    Call<Void> createGuardian(@QueryMap Map<String, Object> options);
 
     @GET("/guardian/auth")
     void authGuardian(@Query("client_id") int client_id);

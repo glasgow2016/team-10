@@ -159,8 +159,17 @@ app.get('/fellowship/join', function(req, res) {
 	var client_id = req.query.client_id;
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.join(client_id, fellow_id);
-	//return success bool;
+	database.fellowship.join(client_id, fellow_id, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 
 });
 
@@ -180,7 +189,15 @@ app.get('/fellowship/get', function(req, res) {
 	var fellow_id = req.query.fellow_id;
 	
 	database.fellowship.get(fellow_id,function(entry){
+		
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
 	});
 	
 	/*
@@ -227,8 +244,9 @@ app.get('/journey/start', function(req, res) {
 	//start a journey
 	var journey_id = req.query.journey_id;
 	var start_time = req.query.start_time;
+	var child_present = req.query.child_present;
 	
-	database.journey.start(journey_id, start_time);
+	database.journey.start(journey_id, start_time, child_present);
 		
 });
 
