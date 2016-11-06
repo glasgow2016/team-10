@@ -16,9 +16,7 @@ app.get('/', function(req, res) {
 console.log("I AM HERE");
 console.log();
 
-
 database.createTables();
-
 
 	/*
 	var group = database.group.display();
@@ -30,7 +28,6 @@ database.createTables();
 	});
 	*/
 	
-
 app.get('/client/create', function(req, res) {
 	//creating client
 	
@@ -162,8 +159,17 @@ app.get('/fellowship/join', function(req, res) {
 	var client_id = req.query.client_id;
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.join(client_id, fellow_id);
-	//return success bool;
+	database.fellowship.join(client_id, fellow_id, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 
 });
 
@@ -183,7 +189,15 @@ app.get('/fellowship/get', function(req, res) {
 	var fellow_id = req.query.fellow_id;
 	
 	database.fellowship.get(fellow_id,function(entry){
+		
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
 	});
 	
 	/*
