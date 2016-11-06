@@ -14,9 +14,9 @@ module.exports = {
 		create : function(name, creator_phone_num, callback){
 
 			var db = module.exports.getConnection();
-			var stmt = db.prepare("INSERT INTO Fellowship VALUES (?,?,?)");			
+			var stmt = db.prepare("INSERT INTO Fellowship VALUES (?,?,?,?)");			
 
-			stmt.run([null, name, creator_phone_num], function(){
+			stmt.run([null, name, creator_phone_num, 0], function(){
 				db.get("SELECT last_insert_rowid()", function(err, row){				
 					callback(row["last_insert_rowid()"]);
 				});	
@@ -76,7 +76,7 @@ module.exports = {
 			db.all("SELECT * FROM Fellowship", function(err, rows){
 				callback(rows[0].id);
 			});
-		}
+		},
 
 		//alllow a child to join the group
 		join : function(client_id, fellowship_id, callback){
