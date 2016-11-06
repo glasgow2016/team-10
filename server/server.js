@@ -24,9 +24,9 @@ database.createTables();
 	*/
 	
 
-app.get('/client/create/p', function(req, res) {
+app.get('/client/create', function(req, res) {
 	//creating client
-	
+	console.log('CREATE');
 	var fname = req.query.fname;
 	var sname = req.query.sname;
 	var age = req.query.age;
@@ -36,7 +36,7 @@ app.get('/client/create/p', function(req, res) {
 	
 });
 
-app.get('/client/login/p', function(req, res) {
+app.get('/client/login', function(req, res) {
 	//Welcome the child
 	//get the id of tthe client
 	var id = req.query.tagId;
@@ -49,7 +49,7 @@ app.get('/client/login/p', function(req, res) {
 	
 });
 
-app.get('/guardian/create/p', function(req, res) {
+app.get('/guardian/create', function(req, res) {
 	//create guardian
 	
 	var fname = req.query.fname;
@@ -60,7 +60,7 @@ app.get('/guardian/create/p', function(req, res) {
 	
 });
 
-app.get('/guardian/auth/p', function(req, res) {
+app.get('/guardian/auth', function(req, res) {
 	
 	var id = req.query.tagId;
 	
@@ -68,7 +68,7 @@ app.get('/guardian/auth/p', function(req, res) {
 	
 });
 
-app.get('/guardian/get/p', function(req, res) {
+app.get('/guardian/get', function(req, res) {
 	
 	var phone_num = req.query.phone_num;
 	
@@ -91,7 +91,7 @@ app.get('/guardian/login', function(req, res) {
 	
 });
 
-app.get('/fellowship/delete/p', function(req, res) {
+app.get('/fellowship/delete', function(req, res) {
 	//delete fellowship from database
 	
 	var id = req.query.tagId;
@@ -100,7 +100,7 @@ app.get('/fellowship/delete/p', function(req, res) {
 	
 });
 
-app.get('/fellowship/create/p', function(req, res) {
+app.get('/fellowship/create', function(req, res) {
 	//create fellowship
 	var fname = req.query.fname;
 	var sname = req.query.sname;
@@ -110,7 +110,7 @@ app.get('/fellowship/create/p', function(req, res) {
 	//return id;
 });
 
-app.get('/fellowship/addJourney/p', function(req, res) {
+app.get('/fellowship/addJourney', function(req, res) {
 	
 	//add journey
 	var journey_id = req.query.journey_id;
@@ -120,7 +120,7 @@ app.get('/fellowship/addJourney/p', function(req, res) {
 
 });
 
-app.get('/fellowship/join/p', function(req, res) {
+app.get('/fellowship/join', function(req, res) {
 	
 	//join fellowship
 	var client_id = req.query.client_id;
@@ -131,7 +131,7 @@ app.get('/fellowship/join/p', function(req, res) {
 
 });
 
-app.get('/fellowship/deleteJourney/p', function(req, res) {
+app.get('/fellowship/deleteJourney', function(req, res) {
 	
 	//delete fellowship
 	
@@ -146,7 +146,9 @@ app.get('/fellowship/get', function(req, res) {
 	
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.get(fellow_id);
+	database.fellowship.get(fellow_id,function(entry){
+		console.log(entry);
+	});
 	
 	/*
 	var group = database.group.display();
@@ -163,7 +165,7 @@ app.get('/fellowship/get', function(req, res) {
 	//return name, child list, parents
 });
 
-app.get('/journey/create/p', function(req, res) {
+app.get('/journey/create', function(req, res) {
 	//add journey to a group
 
 	var phone_num = req.query.phone_num;
@@ -179,7 +181,7 @@ app.get('/journey/create/p', function(req, res) {
 });
 
 
-app.get('/journey/start/p', function(req, res) {
+app.get('/journey/start', function(req, res) {
 	//start a journey
 	var journey_id = req.query.journey_id;
 	var start_time = req.query.start_time;
