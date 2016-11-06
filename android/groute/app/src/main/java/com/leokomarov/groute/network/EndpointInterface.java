@@ -43,6 +43,9 @@ public interface EndpointInterface {
     @GET("/fellowship/get")
     Call<Fellowship> getFellowship(@Query("fellowship_id") int fellowship_id);
 
+    @GET("/fellowship/getFirst")
+    Call<Fellowship> getFirstFellowship();
+
     @GET("/fellowship/delete")
     void deleteFellowship(@Query("fellowship_id") int fellowship_id);
 

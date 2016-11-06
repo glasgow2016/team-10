@@ -2,6 +2,7 @@ package com.leokomarov.groute;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.Conductor;
@@ -45,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         guardian = new Guardian();
         fellowships = new ArrayList<>();
         journeys = new ArrayList<>();
+
+        Log.v("main", "main oncreate");
 
         //sets the root controller if it doesn't already exist
         //.with() returns a new RouterTransaction

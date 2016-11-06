@@ -23,6 +23,9 @@ import retrofit2.Response;
 
 public class CreateFellowshipController extends ButterKnifeController {
 
+    @BindView(R.id.nameEdittext)
+    EditText nameEdittext;
+
     @OnClick(R.id.submitButton)
     void submitButtonClicked(){
         final String nameETString = nameEdittext.getText().toString();
@@ -69,9 +72,6 @@ public class CreateFellowshipController extends ButterKnifeController {
 
         getRouter().popCurrentController();
     }
-
-    @BindView(R.id.nameEdittext)
-    EditText nameEdittext;
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
