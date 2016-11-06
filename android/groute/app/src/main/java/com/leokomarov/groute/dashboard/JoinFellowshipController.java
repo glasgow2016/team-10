@@ -1,32 +1,42 @@
 package com.leokomarov.groute.dashboard;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
+import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
+import com.leokomarov.groute.db.Fellowship;
+
+import java.util.HashMap;
 
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class JoinFellowshipController extends ButterKnifeController {
 
     @OnClick(R.id.findAGroupButton)
     void findAGroupButtonClicked(){
 
-        /*
         Call<Fellowship> firstFellowshipCall = MainActivity.networkStuff.apiService.getFirstFellowship();
         firstFellowshipCall.enqueue(new Callback<Fellowship>() {
             @Override
             public void onResponse(Call<Fellowship> call, Response<Fellowship> response) {
                 int statusCode = response.code();
                 int fellowship_id = response.body().getId();
+                MainActivity.client.setFellowship(fellowship_id);
 
                 Log.v("register-fell", String.format("statusCode: %d", statusCode));
-                Log.v("register-fell", String.format("id: %d", fellowship_id));
+                Log.v("register-fell", String.format("fellowship_id: %d", fellowship_id));
+                Log.v("register-fell", String.format("client fellowship_id: %d", MainActivity.client.getFellowship()));
+
 
                 HashMap<String, Object> queryOptions = new HashMap<>();
 
@@ -59,9 +69,8 @@ public class JoinFellowshipController extends ButterKnifeController {
                 Log.e("register-child", t.getMessage());
             }
         });
-        */
 
-        getRouter().pushController(RouterTransaction.with(new ChildDashboardController())
+        getRouter().pushController(RouterTransaction.with(new FellowshipDetailsController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );

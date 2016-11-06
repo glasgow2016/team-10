@@ -60,6 +60,7 @@ public class CreateFellowshipController extends ButterKnifeController {
                 fellowship.setId(id);
                 fellowship.setName(nameETString);
                 fellowship.setParentsPhoneNumber(MainActivity.guardian.getPhone());
+                fellowship.setPoints(0);
                 MainActivity.fellowships.add(fellowship);
             }
 
