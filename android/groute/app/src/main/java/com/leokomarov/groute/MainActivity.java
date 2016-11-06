@@ -8,7 +8,10 @@ import com.bluelinelabs.conductor.Conductor;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
+import com.leokomarov.groute.db.Client;
+import com.leokomarov.groute.db.Fellowship;
 import com.leokomarov.groute.home.HomeController;
+import com.leokomarov.groute.network.NetworkStuff;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,7 +19,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
 
     private Router router;
-    public static Bundle bundle;
+    public static NetworkStuff networkStuff;
+    public static Client client;
+    public static Fellowship fellowship;
 
     @BindView(R.id.controller_container)
     ViewGroup container;
@@ -28,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        bundle = savedInstanceState;
-
         router = Conductor.attachRouter(this, container, savedInstanceState);
+        networkStuff = new NetworkStuff();
+        networkStuff.createApiService();
+        client = new Client();
+        fellowship = new Fellowship();
 
         //sets the root controller if it doesn't already exist
         //.with() returns a new RouterTransaction
