@@ -119,6 +119,16 @@ module.exports = {
 		},
 		auth : function(client_id){
 			//allowing child to join a group
+			var db = module.exports.getConnection();
+
+			db.prepare("INSERT INTO ChildFellowshipAuth VALUES (?,?)");
+
+			db.get("SELECT * FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone", function(err, row){
+				console.log(row);
+				//db.run([client_id, row])
+			});
+			
+
 			//return nothing
 		},
 		getAll : function(callback){
@@ -137,7 +147,7 @@ module.exports = {
 			var db = module.exports.getConnection()
 			
 			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?,?)");	
-			stmt.run([null, fname, sname, age, guardian_phone, null], function(err, row){
+			stmt.run([null, age, fname, sname, guardian_phone, null], function(err, row){
 				db.get("SELECT last_insert_rowid() FROM Client", function(e, r){				
 					callback(r["last_insert_rowid()"]);
 				});	
@@ -184,7 +194,7 @@ module.exports = {
 
 			//return journey_id
 		},
-		start : function(journey_id, time){
+		start : function(journey_id, time, children_present){
 			var db = module.exports.getConnection();
 
 			db.run("UPDATE Journey SET startTime = " + time + " WHERE id = " + journey_id);
