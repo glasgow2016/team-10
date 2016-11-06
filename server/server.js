@@ -240,6 +240,26 @@ app.get('/journey/create', function(req, res) {
 });
 
 
+app.get('/journey/get', function(req, res) {
+	
+	//get journey
+	var fellow_id = req.query.fellow_id;
+	
+	database.journey.get(fellow_id, function(entry){
+	
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
+	
+});
+
+
 app.get('/journey/start', function(req, res) {
 	//start a journey
 	var journey_id = req.query.journey_id;
