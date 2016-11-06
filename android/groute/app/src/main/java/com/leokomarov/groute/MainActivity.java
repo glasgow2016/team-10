@@ -11,8 +11,11 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.db.Client;
 import com.leokomarov.groute.db.Fellowship;
 import com.leokomarov.groute.db.Guardian;
+import com.leokomarov.groute.db.Journey;
 import com.leokomarov.groute.home.HomeController;
 import com.leokomarov.groute.network.NetworkStuff;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
     public static NetworkStuff networkStuff;
     public static Client client;
     public static Guardian guardian;
-    public static Fellowship fellowship;
+    public static ArrayList<Fellowship> fellowships;
+    public static ArrayList<Journey> journeys;
 
     @BindView(R.id.controller_container)
     ViewGroup container;
@@ -39,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
         networkStuff = new NetworkStuff();
         client = new Client();
         guardian = new Guardian();
-        fellowship = new Fellowship();
+        fellowships = new ArrayList<>();
+        journeys = new ArrayList<>();
 
         //sets the root controller if it doesn't already exist
         //.with() returns a new RouterTransaction
