@@ -1,6 +1,13 @@
-var app = require('express')();
-var http = require('http').Server(app);
+var express = require('express')
+  , cors = require('cors')
+  , app = express();
+
+
 var database = require('./database.js');
+
+var http = require('http').Server(app);
+
+app.use(cors());
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
@@ -26,13 +33,13 @@ database.createTables();
 
 app.get('/client/create', function(req, res) {
 	//creating client
-	console.log(req);
+	
 	var fname = req.query.fname;
 	var sname = req.query.sname;
 	var age = req.query.age;
 	var phone_num = req.query.phone_num;
 
-	var client = database.client.create(fname, sname, age, phone_num, function(entry){
+	database.client.create(fname, sname, age, phone_num, function(entry){
 		console.log(entry);
 		
 		var json_object = {};
@@ -83,9 +90,17 @@ app.get('/guardian/get', function(req, res) {
 	
 	var phone_num = req.query.phone_num;
 	
-	var guardian_info = database.guardian.get(phone_num);
-	
-	return guardian_info;
+	database.guardian.get(phone_num, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 	
 });
 
@@ -117,7 +132,7 @@ app.get('/fellowship/create', function(req, res) {
 	var name = req.query.name;
 	var phone_num = req.query.phone_num;
 	
-	var fellow = database.fellowship.create(name, phone_num, function(entry){
+	database.fellowship.create(name, phone_num, function(entry){
 		
 		console.log(entry);
 		
