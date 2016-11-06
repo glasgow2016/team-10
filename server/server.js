@@ -60,9 +60,11 @@ app.get('/guardian/create/p', function(req, res) {
 	
 });
 
-app.get('/guardian/auth', function(req, res) {
+app.get('/guardian/auth/p', function(req, res) {
 	
-	database.guardian.auth(/*client id*/);
+	var id = req.query.tagId;
+	
+	database.guardian.auth(id);
 	
 });
 
