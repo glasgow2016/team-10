@@ -184,8 +184,20 @@ module.exports = {
 
 			//return journey_id
 		},
-		start : function(journey_id, time){},
-		end : function(journey_id, time){},
+		start : function(journey_id, time){
+			var db = module.exports.getConnection();
+
+			db.run("UPDATE Journey SET startTime = " + time + " WHERE id = " + journey_id);
+
+			db.close()
+		},
+		end : function(journey_id, time){
+			var db = module.exports.getConnection();
+
+			db.run("UPDATE Journey SET endTime = " + time + " WHERE id = " + journey_id);
+
+			db.close()
+		},
 		getAll : function(callback){
 			var db = module.exports.getConnection();
 
