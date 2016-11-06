@@ -26,31 +26,13 @@ database.createTables();
 
 app.get('/client/create', function(req, res) {
 	//add journey to a group
+	//var id = req.query.tagId;
+	
 	var name = "";
 	var age = 0;
 	var parent_phone = "";
 	
 	database.client.create(/*name, age, parent_phone*/);	
-});
-
-app.get('/group/create', function(req, res) {
-	//add group into database
-	var journey = [];
-	var supervisor = "";
-	var start_time = 0;
-	var end_time = 0;
-	var start_loc = 0;
-	var end_loc = 0;
-	//children can create a journey and add supervisor in it
-	//a group can have no journey but it is advised to
-	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
-	
-	if (journey.length == 0){
-		console.log("Please add a journey into your group");
-	}
-	
-	database.group.create(/*name , journey*/);
-	
 });
 
 app.get('/client/login', function(req, res) {
@@ -108,7 +90,7 @@ app.get('/fellowship/delete/p', function(req, res) {
 	var name = req.query.name;
 	console.log(name);
 	console.log(id);
-	res.send("tagId is set to" + id);
+	
 	database.fellowship.del(/*id*/);
 	
 });
@@ -177,7 +159,14 @@ app.get('/journey/create', function(req, res) {
 app.get('/journey/start', function(req, res) {
 	//start a journey
 	
-	journey = database.journey.start(/*journey id, time*/);
+	database.journey.start(/*journey id, time*/);
+		
+});
+
+app.get('/journey/end', function(req, res) {
+	//end a journey
+	
+	database.journey.end(/*journey id, time*/);
 		
 });
 
