@@ -35,6 +35,22 @@ public class GuardianDashboardController extends ButterKnifeController {
                 .show();
     }
 
+    @OnClick(R.id.createFellowship)
+    void createFellowshipButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new CreateFellowshipController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
+    @OnClick(R.id.createJourney)
+    void createJourneyButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new CreateJourneyController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
+
     @OnClick(R.id.superviseJourney)
     void superviseJourneyButtonClicked(){
         getRouter().pushController(RouterTransaction.with(new SuperviseJourneyController())

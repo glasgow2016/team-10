@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colourAccentDark"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:padding="15dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginLeft="3dp"
+        android:text="Supervise a journey"
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimary"
+        android:textSize="28sp" />
+
+    <TextView
+        android:id="@+id/startLocationTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Start location: "
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/startLocationEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startLocationTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="18sp"
+        android:hint="Please enter a starting location"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/endLocationTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startLocationEdittext"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="End location: "
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/endLocationEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endLocationTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="18sp"
+        android:hint="Please enter an ending location"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/startTimeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endLocationEdittext"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="Start time: "
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/startTimeEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTimeTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="18sp"
+        android:hint="Please enter a starting time"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/endTimeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/startTimeEdittext"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="End time: "
+        android:textStyle="bold"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/endTimeEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/endTimeTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colourPrimaryDark"
+        android:textSize="18sp"
+        android:hint="Please enter an ending time"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Submit"
+        android:textSize="20sp"
+        android:textColor="@color/colourPrimaryDark"
+        android:layout_below="@id/endTimeEdittext"/>
+
+</RelativeLayout>
