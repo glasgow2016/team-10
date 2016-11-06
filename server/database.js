@@ -1,8 +1,6 @@
 var fs = require("fs");
 var file = "text.db";
 
-var exists = fs.existsSync(file);
-
 var sqlite3 = require("sqlite3").verbose();
 
 var tables = [
@@ -18,19 +16,9 @@ var clientCount = (function(){
 })();
 
 module.exports = {
-	dbTest : function(db){
-		db.each("SELECT * FROM Guardian", function(err, row){
-			console.log(row);	
-		});		
-	},
-
 	getConnection : function(){
 		return new sqlite3.Database(file);
 	}, 
-
-	isChild : function(id){
-
-	},
 	
 	fellowship : {		
 		create : function(name, creator_phone_num, callback){
