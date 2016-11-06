@@ -102,12 +102,14 @@ app.get('/fellowship/delete', function(req, res) {
 
 app.get('/fellowship/create', function(req, res) {
 	//create fellowship
-	var fname = req.query.fname;
-	var sname = req.query.sname;
+	
+	var name = req.query.name;
 	var phone_num = req.query.phone_num;
-
-	database.fellowship.create(fname, sname, phone_num);
-	//return id;
+	
+	var fellow = database.fellowship.create(name, phone_num, function(x){
+		console.log(x);
+	});
+	
 });
 
 app.get('/fellowship/addJourney', function(req, res) {
