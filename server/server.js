@@ -34,6 +34,13 @@ app.get('/client/create', function(req, res) {
 
 	var client = database.client.create(fname, sname, age, phone_num, function(entry){
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
 	});
 	
 	
@@ -113,6 +120,12 @@ app.get('/fellowship/create', function(req, res) {
 	var fellow = database.fellowship.create(name, phone_num, function(entry){
 		
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
 		
 	});
 	
