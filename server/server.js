@@ -92,46 +92,61 @@ app.get('/guardian/login', function(req, res) {
 });
 
 app.get('/fellowship/delete/p', function(req, res) {
-	//delete group from database
+	//delete fellowship from database
 	
 	var id = req.query.tagId;
 	
-	database.fellowship.del(id);
+	database.fellowship.delete(id);
 	
 });
 
-app.get('/fellowship/create', function(req, res) {
+app.get('/fellowship/create/p', function(req, res) {
 	//create fellowship
-	database.fellowship.create(/*name, phone, callback?*/);
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var phone_num = req.query.phone_num;
+
+	database.fellowship.create(fname, sname, phone_num);
 	//return id;
 });
 
-app.get('/fellowship/addJourney', function(req, res) {
+app.get('/fellowship/addJourney/p', function(req, res) {
 	
 	//add journey
-	database.fellowship.addJourney(/*journeyID, fellowID*/);
+	var journey_id = req.query.journey_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.addJourney(journey_id, fellow_id);
 
 });
 
-app.get('/fellowship/join', function(req, res) {
+app.get('/fellowship/join/p', function(req, res) {
 	
 	//join fellowship
-	database.fellowship.join(/*clientID, fellowID*/);
+	var client_id = req.query.client_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.join(client_id, fellow_id);
 	//return success bool;
 
 });
 
-app.get('/fellowship/deleteJourney', function(req, res) {
+app.get('/fellowship/deleteJourney/p', function(req, res) {
 	
 	//delete fellowship
-	database.fellowship.deleteJourney(/*journeyID, fellowID*/);
+	
+	var journey_id = req.query.journey_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.deleteJourney(journey_id, fellow_id);
 
 });
 
 app.get('/fellowship/get', function(req, res) {
-	//show who is in the group
 	
-	database.fellowship.get(/*id, callback*/);
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.get(fellow_id);
 	
 	/*
 	var group = database.group.display();
