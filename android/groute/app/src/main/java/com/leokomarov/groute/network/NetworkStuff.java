@@ -8,12 +8,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkStuff {
 
-    public static final String BASE_URL = "http://api.myservice.com/";
+    private static final String BASE_URL = "http://api.myservice.com/";
 
-    Retrofit retrofit;
+    private Retrofit retrofit;
+    public EndpointInterface apiService;
 
     public NetworkStuff() {
-
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 .create();
@@ -23,4 +23,10 @@ public class NetworkStuff {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }
+
+    public void createApiService(){
+        apiService = retrofit.create(EndpointInterface.class);
+    }
+
+
 }

@@ -9,6 +9,10 @@ public class Client {
     @Expose
     private Integer id;
 
+    @SerializedName("age")
+    @Expose
+    private Integer age;
+
     @SerializedName("fname")
     @Expose
     private String fname;
@@ -41,6 +45,24 @@ public class Client {
      */
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     *
+     * @return
+     * The age
+     */
+    public Integer getAge() {
+        return age;
+    }
+
+    /**
+     *
+     * @param age
+     * The age
+     */
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     /**

@@ -22,36 +22,133 @@ database.createTables();
 			
 	});
 	*/
-app.get('/group/create', function(req, res) {
-	//add group into database
-	var journey = [];
-	var supervisor = "";
-	var start_time = 0;
-	var end_time = 0;
-	var start_loc = 0;
-	var end_loc = 0;
-	//children can create a journey and add supervisor in it
-	//a group can have no journey but it is advised to
-	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
 	
-	if (journey.length == 0){
-		console.log("Please add a journey into your group");
-	}
+
+app.get('/client/create/p', function(req, res) {
+	//creating client
 	
-	database.group.create(/*name , journey*/);
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var age = req.query.age;
+	var phone_num = req.query.phone_num;
+
+	database.client.create(fname, sname, age, phone_num);
 	
 });
 
-app.get('/group/delete', function(req, res) {
-	//delete group from database
+app.get('/client/login/p', function(req, res) {
+	//Welcome the child
+	//get the id of tthe client
+	var id = req.query.tagId;
 	
-	database.group.del(/*id? or group name*/);
+	console.log("Welcome");
+	database.client.login(id);
+	
+	//display child interface
+	//TODO?
 	
 });
 
-app.get('/group/display', function(req, res) {
-	//show who is in the group
+app.get('/guardian/create/p', function(req, res) {
+	//create guardian
 	
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var phone_num = req.query.phone_num;
+
+	database.guardian.create(fname, sname, phone_num);
+	
+});
+
+app.get('/guardian/auth/p', function(req, res) {
+	
+	var id = req.query.tagId;
+	
+	database.guardian.auth(id);
+	
+});
+
+app.get('/guardian/get/p', function(req, res) {
+	
+	var phone_num = req.query.phone_num;
+	
+	var guardian_info = database.guardian.get(phone_num);
+	
+	return guardian_info;
+	
+});
+
+app.get('/guardian/login', function(req, res) {
+	//Welcome the parent
+	
+	console.log("Welcome");
+	var phone_num = req.query.phone_num;
+	
+	database.guardian.login(phone_num);	
+	
+	//display parent interface
+	//TODO?
+	
+});
+
+app.get('/fellowship/delete/p', function(req, res) {
+	//delete fellowship from database
+	
+	var id = req.query.tagId;
+	
+	database.fellowship.delete(id);
+	
+});
+
+app.get('/fellowship/create/p', function(req, res) {
+	//create fellowship
+	var fname = req.query.fname;
+	var sname = req.query.sname;
+	var phone_num = req.query.phone_num;
+
+	database.fellowship.create(fname, sname, phone_num);
+	//return id;
+});
+
+app.get('/fellowship/addJourney/p', function(req, res) {
+	
+	//add journey
+	var journey_id = req.query.journey_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.addJourney(journey_id, fellow_id);
+
+});
+
+app.get('/fellowship/join/p', function(req, res) {
+	
+	//join fellowship
+	var client_id = req.query.client_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.join(client_id, fellow_id);
+	//return success bool;
+
+});
+
+app.get('/fellowship/deleteJourney/p', function(req, res) {
+	
+	//delete fellowship
+	
+	var journey_id = req.query.journey_id;
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.deleteJourney(journey_id, fellow_id);
+
+});
+
+app.get('/fellowship/get', function(req, res) {
+	
+	var fellow_id = req.query.fellow_id;
+	
+	database.fellowship.get(fellow_id);
+	
+	/*
 	var group = database.group.display();
 	
 	group.forEach(function(entry){
@@ -61,65 +158,44 @@ app.get('/group/display', function(req, res) {
 	});
 		
 	res.sendFile(__dirname + '/index.html');
+	*/
+	
+	//return name, child list, parents
 });
 
-app.get('/group/join', function(req, res){
-
-});
-
-app.get('/guardian/create', function(req, res) {
+app.get('/journey/create/p', function(req, res) {
 	//add journey to a group
-	var name = "";
-	var phone_num = "";
+
+	var phone_num = req.query.phone_num;
+	var start_loc = req.query.start_loc;
+	var end_loc = req.query.end_loc;
+	var start_time = req.query.start_time;
+	var end_time = req.query.end_time;
 	
-	database.guardian.create(/*name, phone_num*/);
+	database.journey.create(phone_num, start_loc, end_loc, start_time, end_time);
+	
+	//return journey_id;
 	
 });
 
-app.get('/guardian/login', function(req, res) {
-	//Welcome the parent
+
+app.get('/journey/start/p', function(req, res) {
+	//start a journey
+	var journey_id = req.query.journey_id;
+	var start_time = req.query.start_time;
 	
-	//get the name and phone from login fields
-	
-	console.log("Welcome");
-	console.log(database.client.getParent(/*name, phone_num*/));
-	
-	//display parent interface
-	//TODO
+	database.journey.start(journey_id, start_time);
+		
 });
 
-app.get('/client/create', function(req, res) {
-	//add journey to a group
-	var name = "";
-	var age = 0;
-	var parent_phone = "";
+app.get('/journey/end', function(req, res) {
+	//end a journey
 	
-	database.client.create(/*name, age, parent_phone*/);	
-});
-
-app.get('/client/login', function(req, res) {
-	//Welcome the child
+	var journey_id = req.query.journey_id;
+	var start_time = req.query.start_time;
 	
-	//get the name and parent phone from login fields
-	
-	console.log("Welcome");
-	console.log(database.client.getChild(/*name, parent_phone_num*/));
-	
-	//display child interface
-	//TODO
-	
-});
-
-app.get('/journey/create', function(req, res) {
-	//add journey to a group
-	var journey = [];
-	var supervisor = "";
-	var start_time = 0;
-	var end_time = 0;
-	var start_loc = 0;
-	var end_loc = 0;
-	journey = database.journey.create(/*supervisor, start_loc, end_loc, start_time, end_time*/);
-	database.group.addJourney(journey);	
+	database.journey.end(journey_id, start_time);
+		
 });
 
 app.get('/database', function(req, res) {
