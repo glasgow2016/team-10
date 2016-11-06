@@ -1,16 +1,17 @@
 var express = require('express')
-  , cors = require('cors')
   , app = express();
 
+var path = require('path');
 
 var database = require('./database.js');
 
 var http = require('http').Server(app);
 
-app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
+
 });
 
 console.log("I AM HERE");

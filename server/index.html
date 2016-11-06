@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>HTML5 basic skeleton</title>
+  <title>Groute</title>
   <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script type="text/javascript">
 
@@ -27,7 +27,7 @@
     }
 
     #mainImg {
-        background-image: url("/web/groute.gif");
+        background-image: url("images/groute.gif");
         background-size: contain;
         height: 1334px;
         width: 750px;
@@ -41,6 +41,7 @@
         left: 150px;
         border: 1px solid red;
         font-size: 48px;
+        display: none;
     }
 
     
@@ -52,6 +53,7 @@
         left: 153px;
         border: 1px solid red;
         font-size: 48px;
+        display: none;
     }
         
     .parentsno {
@@ -62,6 +64,7 @@
         left: 153px;
         border: 1px solid red;
         font-size: 48px;
+        display: none;
     }
 
     .submit {
@@ -88,10 +91,13 @@
 </head>
 <body>
   <div id="wrapper">
-    <div id='mainImg'></div>
+    <img id='mainImg'></div>
     <div class='login'></div>
     <div class='register'></div>
     <div class='submit'></div>
+    <input type='text' class='name'>
+    <input type='text' class='age'>
+    <input type='text' class='parentsno'>
   </div>   
 <script>
   $(document).ready(function(){
@@ -99,12 +105,12 @@
 
     $(".register").click(function(){
 
-        $("#mainImg").css("background-image","url(web/regChild.gif)");
-        $("#wrapper").append("<input type='text' class='name'></div>");
-        $("#wrapper").append("<input type='text' class='age'></div>");
-        $("#wrapper").append("<input type='text' class='parentsno'></div>");
+        $("#mainImg").css("background-image","url(images/regChild.gif)");
         $(".login").hide();
         $(".register").hide();
+        $(".name").show();
+        $(".age").show();
+        $(".parentsno").show();
         $(".submit").show();
     });
 
@@ -114,20 +120,19 @@
 
       });
       $(".submit").click(function(){
-        alert("submito");
         console.log("CRY");
+        var surname = $(".name").val();
+        var surname = surname.split(" ");
+        console.log(surname);
+        
         $.ajax({
-          url:"localhost:3000/client/create",
-          statusCode: {
-            404: function() {
-              alert( "page not found" );
-            }
+          dataType: "json",
+          data: JSON.stringify({fname:"adam", sname:"adamovic", guardian_phone:"0790112345"}),
+          url:"http://localhost:3000/client/create",
+          contentType: "application/json",
 
-          },
-          success: function(o) {
-            alert(o);
-          }
         });
+
       });
 
     });  
