@@ -91,16 +91,16 @@ module.exports = {
 			db.close();
 		},
 		//remove a journey from the group
-		deleteJourney : function(journey_id, fellowship_ip){
+		deleteJourney : function(journey_id, fellowship_id){
 			//return void
 			var db = module.exports.getConnection();
 			db.run("UPDATE Journey SET fellowship = null WHERE id = " + journey_id)
 			db.close();
 		},
 
-		addPoints : function(journey_id, points){
+		addPoints : function(fellowship_id, points){
 			var db = module.exports.getConnection();
-			db.run("UPDATE Fellowship SET points = points  + " + points + " WHERE id = " + journey_id);
+			db.run("UPDATE Fellowship SET points = points  + " + points + " WHERE id = " + fellowship_id);
 			db.close();
 		}
 	},	
