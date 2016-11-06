@@ -224,6 +224,13 @@ module.exports = {
 
 			db.close()
 		},
+		get : function(fellowship_id, callback){
+			var db = module.exports.getConnection();
+			//return all journeys for a given group id
+			db.all("SELECT * FROM Journey WHERE Journey.fellowship = " + fellowship_id, function(err, rows){
+				callback(rows);
+			});
+		},
 		getAll : function(callback){
 			var db = module.exports.getConnection();
 
