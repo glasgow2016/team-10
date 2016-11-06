@@ -53,9 +53,6 @@ public class RegisterChildController extends ButterKnifeController {
         HashMap<String, Object> queryOptions = new HashMap<>();
         final String fname = name.split(" ")[0];
         final String sname = name.split(" ")[1];
-        for (String s : name.split(" ")) {
-            Log.v("name", s);
-        }
 
         //fellowship key is ignored by the server
         queryOptions.put("id", 0);

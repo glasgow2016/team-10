@@ -10,6 +10,7 @@ import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.db.Client;
 import com.leokomarov.groute.db.Fellowship;
+import com.leokomarov.groute.db.Guardian;
 import com.leokomarov.groute.home.HomeController;
 import com.leokomarov.groute.network.NetworkStuff;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Router router;
     public static NetworkStuff networkStuff;
     public static Client client;
+    public static Guardian guardian;
     public static Fellowship fellowship;
 
     @BindView(R.id.controller_container)
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         router = Conductor.attachRouter(this, container, savedInstanceState);
         networkStuff = new NetworkStuff();
         client = new Client();
+        guardian = new Guardian();
         fellowship = new Fellowship();
 
         //sets the root controller if it doesn't already exist
