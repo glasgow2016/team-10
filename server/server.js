@@ -1,6 +1,13 @@
-var app = require('express')();
-var http = require('http').Server(app);
+var express = require('express')
+  , cors = require('cors')
+  , app = express();
+
+
 var database = require('./database.js');
+
+var http = require('http').Server(app);
+
+app.use(cors());
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
