@@ -13,7 +13,7 @@ By ditching the car and walking as part of a peer group, children are helping no
 
 3) They look at a map showing which local groups are available to join
 
-4) They choose a group and can see some details about the group, including who the trusted supervisor is. The child then requests to join the group.
+4) They choose a group and can see some details about the group, including who the trusted supervisor is. The child requests to join the group.
 
 5) At this stage, their parents receive a text message, email or notification if they have downloaded the app. They can check who the supervisor is (a trusted parent of a classmate that they likely know in real life). They accept their childs request to join the group
 
@@ -21,7 +21,7 @@ By ditching the car and walking as part of a peer group, children are helping no
 
 7) The journey shows the meeting time along with other information, including the daily road safety challenge
 
-8) The daily road safety challenge is a chance to earn bonus points for the group. A bank of challenges could be prepared with Brake before hand, and the supervisor will be provided with some information around the specific task highlighted. 
+8) The daily road safety challenge is a chance to earn bonus points for the group. A bank of challenges will be prepared with Brake before hand, and the supervisor will be provided with information around the task each day to teach the children. 
 
 9) When the journey ends, the supervisor checks the group in. Notifications are sent to the children's parents, confirming their child's safe arrival.
 The supervisor also scores the group for their performance in the daily challenge.
@@ -29,3 +29,10 @@ The supervisor also scores the group for their performance in the daily challeng
 10) Points are awarded! The children can check the app during or after school and see if they have reached a new level and how their group is doing compared to the rest of the class on the leaderboards. Teachers could coordinate to run a road safety week with class versus class competitions, or even inter-school competitions!
 
 11) Finally, an achievement system would reward consistent walkers, e.g. for walking 10 days in a row, for walking even though it is raining etc.
+
+12) Extensions:
+	groups and journeys to other destinations
+	different types of transport (bus, bike, train)
+	rotating parent volunteers for groups
+	supervisor accreditation by Brake
+	supervisors recognised by schools with certificates, thank you cards etc
