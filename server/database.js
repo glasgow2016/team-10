@@ -13,56 +13,140 @@ var tables = [
  	"ChildFellowshipAuth"
  ];
 
-var dbTest = function(db){
-	var x = db.run("SELECT * FROM Client");
-	console.log(x);
-}
+var clientCount = (function(){
+
+})();
 
 module.exports = {
+	dbTest : function(db){
+		db.each("SELECT * FROM Guardian", function(err, row){
+			console.log(row);	
+		});		
+	},
 
 	getConnection : function(){
 		return new sqlite3.Database(file);
 	}, 
 
-	disconnect : function(db){
-		db.close()
-	},
-
 	isChild : function(id){
 
 	},
 	
-	group : {		
-		create : function(name, journey){
-			
+	fellowship : {		
+		create : function(name, creator_phone_num, callback){
+
+			var db = module.exports.getConnection();
+			var stmt = db.prepare("INSERT INTO Fellowship VALUES (?,?,?)");			
+
+			stmt.run([null, name, creator_phone_num], function(){
+				db.get("SELECT last_insert_rowid()", function(err, row){				
+					callback(row["last_insert_rowid()"]);
+				});	
+			});		
+
+			stmt.finalize();
+			db.close();	
 		},
-		delete : function(){},
-		display : function(user_id){},
-		join : function(user_id){},	
-		addJourney: function(journey){},
+
+		delete : function(fellowship_id){
+				
+			var db = module.exports.getConnection();
+			db.run("DELETE FROM Fellowship WHERE id = " + fellowship_id);
+
+			db.close();
+			//return void
+		},
+
+		getAll : function(callback){
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Fellowship", function(err, row){				
+				callback(row);		
+			});
+
+			db.close();
+		},
+
+		get : function(fellowship_id, callback){
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
+				callback(row);
+				//return phonenumber, fname, sname
+			});
+
+			db.close();
+
+			//return name, list of children, list of parents
+		},
+		join : function(client_id, fellowship_id, callback){
+			var db = module.exports.getConnection();	
+
+
+			//return success boolean
+			
+		},	
+		addJourney: function(journey_id, fellowship_id){
+			//return void
+		},
+		deleteJourney : function(journey_id, fellowship_ip){
+			//return void
+		}
 	},	
 
 	guardian : {
-		create : function(name, phone_num){},
-		login : function(name, phone_num){}
+		create : function(fname, sname, phone_num){
+
+			var db = module.exports.getConnection();
+			var stmt = db.prepare("INSERT INTO Guardian VALUES (?,?,?)");
+			stmt.run([parseInt(phone_num), fname, sname]);
+			stmt.finalize();
+			//return void
+		},
+		login : function(phone_num){
+			//return void
+		},
+		get : function(phone_num, callback){
+			
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Guardian", function(err, row){
+				callback(row);
+				//return phonenumber, fname, sname
+			});
+
+			db.close();
+		},
+		auth : function(client_id){
+			//allowing child to join a group
+			//return nothing
+		}
 	},
 
 	client: {
-		create : function(name, age, parent_phone_num){
-			var db = this.getConnection()
+		create : function(fname, sname, age, guardian_phone, callback){
+			var db = module.exports.getConnection()
 			
-			var stmt = db.prepare("INSERT INTO Client VALUES (?)");	
-			stmt.run("ColumnName #data")
+			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?)");	
+			stmt.run([null, fname, sname, age, guardian_phone]);
 
 			stmt.finalize();
 			
-			this.disconnect(db);
+			db.close();
+
+			//return id
 		},
-		login : function(name, parent_phone_num){}
+		login : function(client_id){
+			//return nothing
+		}
 	},
 
 	journey : {
-		create : function(supervisor, start_loc, end_loc, start_time, end_time){}
+		create : function(supervisorPhone, start_loc, end_loc, start_time, end_time, callback){
+			//return journey_id
+		},
+		start : function(journey_id, time){},
+		end : function(journey_id, time){}
 	},
 
 	createTables : function()
@@ -83,16 +167,16 @@ module.exports = {
 
 			//Fellowship
 			db.run("CREATE TABLE if not exists Fellowship("
-				+ "id integer PRIMARY KEY,"
+				+ "id integer PRIMARY KEY AUTOINCREMENT,"
 				+ "name TEXT NOT NULL,"
-				+ "creator integer NOT NULL,"
-				+ "FOREIGN KEY (creator) REFERENCES Guardian (phone)" 		
+				+ "creatorPhone integer NOT NULL,"
+				+ "FOREIGN KEY (creatorPhone) REFERENCES Guardian (phone)" 		
 				+ ");"
 			);	
 
 			//Client
 			db.run("CREATE TABLE if not exists Client("
-				+ "id integer PRIMARY KEY,"
+				+ "id integer PRIMARY KEY AUTOINCREMENT,"
 				+ "age integer NOT NULL CHECK(age > 0),"
 				+ "fname TEXT NOT NULL,"
 				+ "sname TEXT NOT NULL,"
@@ -105,7 +189,7 @@ module.exports = {
 
 			//Journey
 			db.run("CREATE TABLE if not exists Journey("
-				+ "id integer PRIMARY KEY,"
+				+ "id integer PRIMARY KEY AUTOINCREMENT,"
 				+ "name TEXT NOT NULL,"
 				+ "fellowship integer NOT NULL,"
 				+ "supervisorPhone integer NOT NULL,"
@@ -131,7 +215,7 @@ module.exports = {
 			);
 		});
 
-		this.disconnect(db);
+		db.close();
 	}	
 }
 
