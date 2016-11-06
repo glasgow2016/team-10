@@ -146,7 +146,9 @@ app.get('/fellowship/get', function(req, res) {
 	
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.get(fellow_id);
+	database.fellowship.get(fellow_id,function(entry){
+		console.log(entry);
+	});
 	
 	/*
 	var group = database.group.display();
