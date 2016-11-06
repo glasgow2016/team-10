@@ -17,6 +17,10 @@ public class Fellowship {
     @Expose
     private Integer parentsPhoneNumber;
 
+    @SerializedName("points")
+    @Expose
+    private Integer points;
+
     /**
      *
      * @return
@@ -71,4 +75,11 @@ public class Fellowship {
         this.parentsPhoneNumber = parentsPhoneNumber;
     }
 
+    public Integer getPoints() {
+        return points;
+    }
+
+    public void setPoints(Integer points) {
+        this.points = points;
+    }
 }

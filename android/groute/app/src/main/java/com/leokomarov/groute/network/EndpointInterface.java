@@ -4,6 +4,8 @@ import com.leokomarov.groute.db.Client;
 import com.leokomarov.groute.db.Fellowship;
 import com.leokomarov.groute.db.Guardian;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 import retrofit2.Call;
@@ -38,16 +40,19 @@ public interface EndpointInterface {
 
     //fellowships
     @GET("/fellowship/create")
-    Call<Integer> createFellowship(@QueryMap Map<String, Object> options);
+    Call<Fellowship> createFellowship(@QueryMap Map<String, Object> options);
 
     @GET("/fellowship/get")
-    Call<Fellowship> getFellowship(@Query("fellowship_id") int fellowship_id);
+    Call<JSONObject> getFellowship(@Query("fellowship_id") int fellowship_id);
+
+    @GET("/fellowship/getFirst")
+    Call<Fellowship> getFirstFellowship();
 
     @GET("/fellowship/delete")
     void deleteFellowship(@Query("fellowship_id") int fellowship_id);
 
     @GET("/fellowship/join")
-    Call<Boolean> joinFellowship(@QueryMap Map<String, Object> options);
+    Call<JSONObject> joinFellowship(@QueryMap Map<String, Object> options);
 
     @GET("/fellowship/addJourney")
     void addJourneyToFellowship(@QueryMap Map<String, Object> options);

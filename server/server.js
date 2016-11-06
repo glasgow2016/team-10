@@ -46,10 +46,15 @@ app.get('/client/create', function(req, res) {
 		
 		res.json(json_object);
 		
+	});	
+});
+
+app.get('/client/getPoints', function(req,res){
+	var client_id = req.query.client_id;
+
+	database.client.getPoints(client_id, function(points){
+		res.json({ "points" : points})
 	});
-	
-	
-	
 });
 
 app.get('/client/login', function(req, res) {
@@ -63,6 +68,13 @@ app.get('/client/login', function(req, res) {
 	//display child interface
 	//TODO?
 	
+});
+
+app.get('/client/addPoints', function(req, res){
+	var clientId = req.query.clientId;
+	var points = req.query.points;
+
+	database.client.addPoints(clientId, points);
 });
 
 app.get('/guardian/create', function(req, res) {
@@ -200,20 +212,17 @@ app.get('/fellowship/get', function(req, res) {
 		res.json(json_object);
 		
 	});
+
+});
+
+app.get('/fellowship/addPoints', function(req, res) {
 	
-	/*
-	var group = database.group.display();
+	//add points
+	var fellow_id = req.query.fellow_id;
+	var points = req.query.points;
 	
-	group.forEach(function(entry){
-			
-			console.log(entry);
-			
-	});
-		
-	res.sendFile(__dirname + '/index.html');
-	*/
-	
-	//return name, child list, parents
+	database.fellowship.addPoints(fellow_id, points);
+
 });
 
 app.get('/journey/create', function(req, res) {
@@ -239,7 +248,6 @@ app.get('/journey/create', function(req, res) {
 	});
 	
 });
-
 
 app.get('/journey/get', function(req, res) {
 	
@@ -279,6 +287,12 @@ app.get('/journey/end', function(req, res) {
 	
 	database.journey.end(journey_id, start_time);
 		
+});
+
+app.get('/fellowship/getFirst', function(req, res){
+	database.fellowship.getFirst(function(id){
+		res.json({"id" : id});
+	});
 });
 
 app.get('/database', function(req, res) {
