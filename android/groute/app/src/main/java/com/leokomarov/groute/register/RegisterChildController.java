@@ -75,6 +75,7 @@ public class RegisterChildController extends ButterKnifeController {
             @Override
                 public void onResponse(Call<Client> call, Response<Client> response) {
                     int statusCode = response.code();
+                    int id = response.body().getId();
 
                     Log.v("register-child", String.format("statusCode: %d", statusCode));
                     Log.v("register-child", String.format("call: %s", call));
@@ -84,10 +85,8 @@ public class RegisterChildController extends ButterKnifeController {
                     Log.v("register-child", String.format("response.isSuccessful: %s", response.isSuccessful()));
                     Log.v("register-child", String.format("response.errorBody: %s", response.errorBody()));
                     Log.v("register-child", String.format("response.message: %s", response.message()));
-                    Log.v("register-child", String.format("id: %d", response.body().getId()));
-
-
                     Log.v("register-child", String.format("id: %d", id));
+
                     MainActivity.client.setId(id);
                     MainActivity.client.setFname(fname);
                     MainActivity.client.setSname(sname);
