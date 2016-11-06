@@ -5,10 +5,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 
+import butterknife.OnClick;
+
 public class ChildDashboardController extends ButterKnifeController {
+
+    @OnClick(R.id.nextJourneyButton)
+    void nextJourneyButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new JourneyDetailsController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
+    }
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
