@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bluelinelabs.conductor.RouterTransaction;
+import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 
@@ -31,6 +33,14 @@ public class GuardianDashboardController extends ButterKnifeController {
                 .setPositiveButton("Yes", null)
                 .setNegativeButton("No", null)
                 .show();
+    }
+
+    @OnClick(R.id.superviseJourney)
+    void superviseJourneyButtonClicked(){
+        getRouter().pushController(RouterTransaction.with(new SuperviseJourneyController())
+                .pushChangeHandler(new FadeChangeHandler())
+                .popChangeHandler(new FadeChangeHandler())
+        );
     }
 
     @Override
