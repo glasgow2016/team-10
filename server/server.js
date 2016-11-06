@@ -289,6 +289,12 @@ app.get('/journey/end', function(req, res) {
 		
 });
 
+app.get('/fellowship/getFirst', function(req, res){
+	database.fellowship.getFirst(function(id){
+		res.json({"id" : id});
+	});
+});
+
 app.get('/database', function(req, res) {
 	res.sendFile(__dirname + '/database.js');
 });

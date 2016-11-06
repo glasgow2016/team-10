@@ -70,6 +70,14 @@ module.exports = {
 			//return name, list of children, list of parents
 		},
 
+		getFirst : function(callback){
+			var db = module.exports.getConnection();
+
+			db.all("SELECT * FROM Fellowship", function(err, rows){
+				callback(rows[0].id);
+			});
+		}
+
 		//alllow a child to join the group
 		join : function(client_id, fellowship_id, callback){
 			var db = module.exports.getConnection();	
