@@ -14,7 +14,7 @@
         android:padding="15dp"
         android:layout_marginStart="3dp"
         android:layout_marginLeft="3dp"
-        android:text="Dashboard"
+        android:text="Dashboard - child"
         android:textStyle="bold"
         android:textColor="@color/colourPrimary"
         android:textSize="32sp" />
