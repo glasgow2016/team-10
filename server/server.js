@@ -77,13 +77,6 @@ app.get('/client/addPoints', function(req, res){
 	database.client.addPoints(clientId, points);
 });
 
-app.get('/fellowship/addPoints', function(req, res){
-	var clientId = req.query.clientId;
-	var points = req.query.points;
-
-	database.fellowship.addPoints(clientId, points);
-});
-
 app.get('/guardian/create', function(req, res) {
 	//create guardian
 	
@@ -220,28 +213,15 @@ app.get('/fellowship/get', function(req, res) {
 		
 	});
 
-	/*
-	var group = database.group.display();
-	
-	group.forEach(function(entry){
-			
-			console.log(entry);
-			
-	});
-		
-	res.sendFile(__dirname + '/index.html');
-	*/
-	
-	//return name, child list, parents
 });
 
 app.get('/fellowship/addPoints', function(req, res) {
 	
 	//add points
-	var journey_id = req.query.journey_id;
+	var fellow_id = req.query.fellow_id;
 	var points = req.query.points;
 	
-	database.fellowship.addPoints(journey_id, points);
+	database.fellowship.addPoints(fellow_id, points);
 
 });
 

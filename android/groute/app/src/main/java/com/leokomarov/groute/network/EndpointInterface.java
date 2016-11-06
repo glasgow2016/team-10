@@ -38,7 +38,7 @@ public interface EndpointInterface {
 
     //fellowships
     @GET("/fellowship/create")
-    Call<Integer> createFellowship(@QueryMap Map<String, Object> options);
+    Call<Fellowship> createFellowship(@QueryMap Map<String, Object> options);
 
     @GET("/fellowship/get")
     Call<Fellowship> getFellowship(@Query("fellowship_id") int fellowship_id);
