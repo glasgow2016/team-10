@@ -1,8 +1,6 @@
 var fs = require("fs");
 var file = "text.db";
 
-var exists = fs.existsSync(file);
-
 var sqlite3 = require("sqlite3").verbose();
 
 var tables = [
@@ -18,19 +16,9 @@ var clientCount = (function(){
 })();
 
 module.exports = {
-	dbTest : function(db){
-		db.each("SELECT * FROM Guardian", function(err, row){
-			console.log(row);	
-		});		
-	},
-
 	getConnection : function(){
 		return new sqlite3.Database(file);
 	}, 
-
-	isChild : function(id){
-
-	},
 	
 	fellowship : {		
 		create : function(name, creator_phone_num, callback){
@@ -70,11 +58,19 @@ module.exports = {
 		get : function(fellowship_id, callback){
 			var db = module.exports.getConnection();
 
-			db.get("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
-				callback(row);
-				//return phonenumber, fname, sname
-			});
+			db.all("SELECT * FROM Fellowship INNER JOIN Client ON Client.fellowship = Fellowship.id WHERE Fellowship.id = " + fellowship_id, function(e, r){
+		
+				ret = {};
+				ret.clients = [];
+				ret.name = r[0].name;
+									
+				r.forEach(function(n){
+					ret.clients.push(n.id);
+				});
 
+				callback(ret);				
+			});
+				
 			db.close();
 
 			//return name, list of children, list of parents
@@ -82,7 +78,10 @@ module.exports = {
 		join : function(client_id, fellowship_id, callback){
 			var db = module.exports.getConnection();	
 
-
+			db.run("UPDATE Client SET fellowship = " + fellowship_id + " WHERE Client.id = " + client_id, function(err, row){
+				callback(true);
+			});
+			db.close();
 			//return success boolean
 			
 		},	
@@ -132,8 +131,7 @@ module.exports = {
 
 			db.get("SELECT phone FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone WHERE id = " + client_id, function(err, row){
 				stmt.run([client_id, row['phone']]);
-			});
-			
+			});			
 
 			//return nothing
 		},
@@ -213,6 +211,13 @@ module.exports = {
 			db.run("UPDATE Journey SET endTime = " + time + " WHERE id = " + journey_id);
 
 			db.close()
+		},
+		get : function(fellowship_id, callback){
+			var db = module.exports.getConnection();
+			//return all journeys for a given group id
+			db.all("SELECT * FROM Journey WHERE Journey.fellowship = " + fellowship_id, function(err, rows){
+				callback(rows);
+			});
 		},
 		getAll : function(callback){
 			var db = module.exports.getConnection();

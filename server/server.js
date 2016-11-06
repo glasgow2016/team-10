@@ -17,9 +17,7 @@ app.get('/', function(req, res) {
 console.log("I AM HERE");
 console.log();
 
-
 database.createTables();
-
 
 	/*
 	var group = database.group.display();
@@ -31,16 +29,15 @@ database.createTables();
 	});
 	*/
 	
-
 app.get('/client/create', function(req, res) {
 	//creating client
-	console.log(req);
+	
 	var fname = req.query.fname;
 	var sname = req.query.sname;
 	var age = req.query.age;
 	var phone_num = req.query.phone_num;
 
-	var client = database.client.create(fname, sname, age, phone_num, function(entry){
+	database.client.create(fname, sname, age, phone_num, function(entry){
 		console.log(entry);
 		
 		var json_object = {};
@@ -91,9 +88,17 @@ app.get('/guardian/get', function(req, res) {
 	
 	var phone_num = req.query.phone_num;
 	
-	var guardian_info = database.guardian.get(phone_num);
-	
-	return guardian_info;
+	database.guardian.get(phone_num, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 	
 });
 
@@ -125,7 +130,7 @@ app.get('/fellowship/create', function(req, res) {
 	var name = req.query.name;
 	var phone_num = req.query.phone_num;
 	
-	var fellow = database.fellowship.create(name, phone_num, function(entry){
+	database.fellowship.create(name, phone_num, function(entry){
 		
 		console.log(entry);
 		
@@ -155,8 +160,17 @@ app.get('/fellowship/join', function(req, res) {
 	var client_id = req.query.client_id;
 	var fellow_id = req.query.fellow_id;
 	
-	database.fellowship.join(client_id, fellow_id);
-	//return success bool;
+	database.fellowship.join(client_id, fellow_id, function(entry){
+		
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
 
 });
 
@@ -176,7 +190,15 @@ app.get('/fellowship/get', function(req, res) {
 	var fellow_id = req.query.fellow_id;
 	
 	database.fellowship.get(fellow_id,function(entry){
+		
 		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
 	});
 	
 	/*
@@ -219,12 +241,33 @@ app.get('/journey/create', function(req, res) {
 });
 
 
+app.get('/journey/get', function(req, res) {
+	
+	//get journey
+	var fellow_id = req.query.fellow_id;
+	
+	database.journey.get(fellow_id, function(entry){
+	
+		console.log(entry);
+		
+		var json_object = {};
+		
+		json_object.id = entry;
+		
+		res.json(json_object);
+		
+	});
+	
+});
+
+
 app.get('/journey/start', function(req, res) {
 	//start a journey
 	var journey_id = req.query.journey_id;
 	var start_time = req.query.start_time;
+	var child_present = req.query.child_present;
 	
-	database.journey.start(journey_id, start_time);
+	database.journey.start(journey_id, start_time, child_present);
 		
 });
 

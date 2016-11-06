@@ -14,7 +14,7 @@ import com.bluelinelabs.conductor.changehandler.FadeChangeHandler;
 import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
-import com.leokomarov.groute.dashboard.DashboardController;
+import com.leokomarov.groute.dashboard.ChildDashboardController;
 import com.leokomarov.groute.db.Client;
 
 import java.util.HashMap;
@@ -24,8 +24,6 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.R.attr.id;
 
 public class RegisterChildController extends ButterKnifeController {
     private String name;
@@ -55,9 +53,6 @@ public class RegisterChildController extends ButterKnifeController {
         HashMap<String, Object> queryOptions = new HashMap<>();
         final String fname = name.split(" ")[0];
         final String sname = name.split(" ")[1];
-        for (String s : name.split(" ")) {
-            Log.v("name", s);
-        }
 
         //fellowship key is ignored by the server
         queryOptions.put("id", 0);
@@ -77,14 +72,6 @@ public class RegisterChildController extends ButterKnifeController {
                     int statusCode = response.code();
                     int id = response.body().getId();
 
-                    Log.v("register-child", String.format("statusCode: %d", statusCode));
-                    Log.v("register-child", String.format("call: %s", call));
-                    Log.v("register-child", String.format("response: %s", response));
-                    Log.v("register-child", String.format("response.raw: %s", response.raw()));
-                    Log.v("register-child", String.format("response.headers: %s", response.headers()));
-                    Log.v("register-child", String.format("response.isSuccessful: %s", response.isSuccessful()));
-                    Log.v("register-child", String.format("response.errorBody: %s", response.errorBody()));
-                    Log.v("register-child", String.format("response.message: %s", response.message()));
                     Log.v("register-child", String.format("id: %d", id));
 
                     MainActivity.client.setId(id);
@@ -101,7 +88,7 @@ public class RegisterChildController extends ButterKnifeController {
             }
         });
 
-        getRouter().pushController(RouterTransaction.with(new DashboardController())
+        getRouter().pushController(RouterTransaction.with(new ChildDashboardController())
                 .pushChangeHandler(new FadeChangeHandler())
                 .popChangeHandler(new FadeChangeHandler())
         );
