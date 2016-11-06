@@ -16,51 +16,51 @@ public interface EndpointInterface {
     // Callback for the parsed response is the last parameter
 
     //clients
-    @GET("client/create")
+    @GET("/client/create")
     Call<Integer> createClient(@QueryMap Map<String, Object> options);
 
-    @GET("client/login")
+    @GET("/client/login")
     void loginClient(@Query("client_id") int client_id);
 
     //guardians
-    @GET("guardian/create")
+    @GET("/guardian/create")
     void createGuardian(@QueryMap Map<String, Object> options);
 
-    @GET("guardian/auth")
+    @GET("/guardian/auth")
     void authGuardian(@Query("client_id") int client_id);
 
-    @GET("guardian/get")
+    @GET("/guardian/get")
     Call<Guardian> getGuardian(@Query("phone_num") int phone_num);
 
-    @GET("guardian/login")
+    @GET("/guardian/login")
     void loginGuardian(@Query("phone_num") int phone_num);
 
     //fellowships
-    @GET("fellowship/create")
+    @GET("/fellowship/create")
     Call<Integer> createFellowship(@QueryMap Map<String, Object> options);
 
-    @GET("fellowship/get")
+    @GET("/fellowship/get")
     Call<Fellowship> getFellowship(@Query("fellowship_id") int fellowship_id);
 
-    @GET("fellowship/delete")
+    @GET("/fellowship/delete")
     void deleteFellowship(@Query("fellowship_id") int fellowship_id);
 
-    @GET("fellowship/join")
+    @GET("/fellowship/join")
     Call<Boolean> joinFellowship(@QueryMap Map<String, Object> options);
 
-    @GET("fellowship/addJourney")
+    @GET("/fellowship/addJourney")
     void addJourneyToFellowship(@QueryMap Map<String, Object> options);
 
-    @GET("fellowship/deleteJourney")
+    @GET("/fellowship/deleteJourney")
     void deleteJourneyFromFellowship(@QueryMap Map<String, Object> options);
 
     //journeys
-    @GET("journey/create")
+    @GET("/journey/create")
     Call<Integer> createJourney(@QueryMap Map<String, Object> options);
 
-    @GET("journey/start")
+    @GET("/journey/start")
     void startJourney(@QueryMap Map<String, Object> options);
 
-    @GET("journey/end")
+    @GET("/journey/end")
     void endJourney(@QueryMap Map<String, Object> options);
 }
