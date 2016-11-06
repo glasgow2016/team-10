@@ -54,4 +54,13 @@ interface EndpointInterface {
     @GET("fellowship/deleteJourney")
     void deleteJourneyFromFellowship(@QueryMap Map<String, String> options);
 
+    //journeys
+    @GET("journey/create")
+    Call<Integer> createJourney(@QueryMap Map<String, String> options);
+
+    @GET("journey/start")
+    void startJourney(@QueryMap Map<String, String> options);
+
+    @GET("journey/end")
+    void endJourney(@QueryMap Map<String, String> options);
 }
