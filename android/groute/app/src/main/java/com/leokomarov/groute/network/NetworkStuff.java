@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkStuff {
 
-    private static final String BASE_URL = "http://api.myservice.com/";
+    private static final String BASE_URL = "http://04eaa23c.ngrok.io//";
 
     private Retrofit retrofit;
     public EndpointInterface apiService;
@@ -22,11 +22,6 @@ public class NetworkStuff {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
-    }
-
-    public void createApiService(){
         apiService = retrofit.create(EndpointInterface.class);
     }
-
-
 }

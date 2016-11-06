@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         router = Conductor.attachRouter(this, container, savedInstanceState);
         networkStuff = new NetworkStuff();
-        networkStuff.createApiService();
         client = new Client();
         fellowship = new Fellowship();
 
