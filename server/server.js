@@ -32,13 +32,17 @@ app.get('/client/create', function(req, res) {
 	var age = req.query.age;
 	var phone_num = req.query.phone_num;
 
-	database.client.create(fname, sname, age, phone_num);
+	var client = database.client.create(fname, sname, age, phone_num, function(entry){
+		console.log(entry);
+	});
+	
+	
 	
 });
 
 app.get('/client/login', function(req, res) {
 	//Welcome the child
-	//get the id of tthe client
+	//get the id of the client
 	var id = req.query.tagId;
 	
 	console.log("Welcome");
@@ -106,8 +110,10 @@ app.get('/fellowship/create', function(req, res) {
 	var name = req.query.name;
 	var phone_num = req.query.phone_num;
 	
-	var fellow = database.fellowship.create(name, phone_num, function(x){
-		console.log(x);
+	var fellow = database.fellowship.create(name, phone_num, function(entry){
+		
+		console.log(entry);
+		
 	});
 	
 });
