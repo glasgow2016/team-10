@@ -15,6 +15,7 @@ import com.leokomarov.groute.MainActivity;
 import com.leokomarov.groute.R;
 import com.leokomarov.groute.controllers.ButterKnifeController;
 import com.leokomarov.groute.dashboard.DashboardController;
+import com.leokomarov.groute.db.Client;
 
 import java.util.HashMap;
 
@@ -23,6 +24,8 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.R.attr.id;
 
 public class RegisterChildController extends ButterKnifeController {
     private String name;
@@ -52,30 +55,38 @@ public class RegisterChildController extends ButterKnifeController {
         HashMap<String, Object> queryOptions = new HashMap<>();
         final String fname = name.split(" ")[0];
         final String sname = name.split(" ")[1];
-        Log.v("name", name.split(" ").toString());
         for (String s : name.split(" ")) {
             Log.v("name", s);
         }
 
         //fellowship key is ignored by the server
-        queryOptions.put("id", 5);
+        queryOptions.put("id", 0);
         queryOptions.put("fname", fname);
         queryOptions.put("sname", sname);
         queryOptions.put("age", age);
         queryOptions.put("phone_num", parentsPhoneNumber);
 
         //fellowship key is ignored by the server
-        queryOptions.put("fellowship", 5);
+        queryOptions.put("fellowship", 0);
 
-        Call<Integer> call = MainActivity.networkStuff.apiService.createClient(queryOptions);
-        call.enqueue(new Callback<Integer>() {
+
+        Call<Client> call = MainActivity.networkStuff.apiService.createClient(queryOptions);
+        call.enqueue(new Callback<Client>() {
             @Override
-                public void onResponse(Call<Integer> call, Response<Integer> response) {
+                public void onResponse(Call<Client> call, Response<Client> response) {
                     int statusCode = response.code();
-                    Integer id = response.body();
+                    int id = response.body().getId();
 
                     Log.v("register-child", String.format("statusCode: %d", statusCode));
+                    Log.v("register-child", String.format("call: %s", call));
+                    Log.v("register-child", String.format("response: %s", response));
+                    Log.v("register-child", String.format("response.raw: %s", response.raw()));
+                    Log.v("register-child", String.format("response.headers: %s", response.headers()));
+                    Log.v("register-child", String.format("response.isSuccessful: %s", response.isSuccessful()));
+                    Log.v("register-child", String.format("response.errorBody: %s", response.errorBody()));
+                    Log.v("register-child", String.format("response.message: %s", response.message()));
                     Log.v("register-child", String.format("id: %d", id));
+
                     MainActivity.client.setId(id);
                     MainActivity.client.setFname(fname);
                     MainActivity.client.setSname(sname);
@@ -84,7 +95,7 @@ public class RegisterChildController extends ButterKnifeController {
              }
 
             @Override
-            public void onFailure(Call<Integer> call, Throwable t) {
+            public void onFailure(Call<Client> call, Throwable t) {
                 // Log error here since request failed
                 Log.e("register-child", t.getMessage());
             }
@@ -102,22 +113,16 @@ public class RegisterChildController extends ButterKnifeController {
         String ageETString = ageEdittext.getText().toString();
         String parentsPhoneNumberETString = parentsNumberEdittext.getText().toString();
 
-        if (nameETString.equals("") || ageETString.equals("") || parentsPhoneNumberETString.equals("") || ! (nameETString.length() > 0) || ! (ageETString.length() > 0) || ! (parentsPhoneNumberETString.length() > 0)) {
+        if ( nameETString.equals("") || ageETString.equals("") || parentsPhoneNumberETString.equals("") || ! (nameETString.length() > 0) || ! (ageETString.length() > 0) || ! (parentsPhoneNumberETString.length() > 0) ) {
             alertInvalid();
             return;
         }
-
-        Log.v("register-submit", String.format("name: %d abc", nameETString.length()));
-        Log.v("register-submit", String.format("name: %b abc", nameETString.isEmpty()));
-
-        Log.v("register-submit", String.format("age %s: %d", ageETString, ageETString.length()));
-        Log.v("register-submit", String.format("phonenum %s: %d", parentsPhoneNumberETString, parentsPhoneNumberETString.length()));
 
         name = nameETString;
         age = Integer.parseInt(ageETString);
         parentsPhoneNumber = Integer.parseInt(parentsPhoneNumberETString);
 
-        if (age == 0 || parentsPhoneNumber == 0) {
+        if (! (name.split(" ").length >= 2) || age == 0 || parentsPhoneNumber == 0) {
             alertInvalid();
         } else {
             register();

@@ -1,5 +1,6 @@
 package com.leokomarov.groute.network;
 
+import com.leokomarov.groute.db.Client;
 import com.leokomarov.groute.db.Fellowship;
 import com.leokomarov.groute.db.Guardian;
 
@@ -17,7 +18,7 @@ public interface EndpointInterface {
 
     //clients
     @GET("/client/create")
-    Call<Integer> createClient(@QueryMap Map<String, Object> options);
+    Call<Client> createClient(@QueryMap Map<String, Object> options);
 
     @GET("/client/login")
     void loginClient(@Query("client_id") int client_id);
