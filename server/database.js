@@ -119,6 +119,16 @@ module.exports = {
 		},
 		auth : function(client_id){
 			//allowing child to join a group
+			var db = module.exports.getConnection();
+
+			db.prepare("INSERT INTO ChildFellowshipAuth VALUES (?,?)");
+
+			db.get("SELECT * FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone", function(err, row){
+				console.log(row);
+				//db.run([client_id, row])
+			});
+			
+
 			//return nothing
 		},
 		getAll : function(callback){
@@ -137,9 +147,9 @@ module.exports = {
 			var db = module.exports.getConnection()
 			
 			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?,?)");	
-			stmt.run([null, fname, sname, age, guardian_phone, null], function(err, row){
-				db.get("SELECT last_insert_rowid()", function(err, row){				
-					callback(row["last_insert_rowid()"]);
+			stmt.run([null, age, fname, sname, guardian_phone, null], function(err, row){
+				db.get("SELECT last_insert_rowid() FROM Client", function(e, r){				
+					callback(r["last_insert_rowid()"]);
 				});	
 			});
 
@@ -165,12 +175,48 @@ module.exports = {
 	},
 
 	journey : {
-		create : function(supervisorPhone, start_loc, end_loc, start_time, end_time, callback){
-			//return journey_id
+		create : function(fellowship_id, supervisorPhone, start_loc, end_loc, start_time, end_time, callback){
+			var db = module.exports.getConnection()
+			var stmt = db.prepare("INSERT INTO Journey VALUES (?,?,?,?,?,?,?,?,?)");	
+
+			var vals = [null, fellowship_id, supervisorPhone, start_time, end_time, start_loc[0], start_loc[1], end_loc[0], end_loc[1]];
+			stmt.run(vals, function(err, row){
+				db.get("SELECT last_insert_rowid() FROM Journey", function(e, r){				
+					callback(r["last_insert_rowid()"]);
+				});	
+			});
 			
+
+			stmt.finalize();
+			
+			db.close();
+
+
+			//return journey_id
 		},
-		start : function(journey_id, time){},
-		end : function(journey_id, time){}
+		start : function(journey_id, time, children_present){
+			var db = module.exports.getConnection();
+
+			db.run("UPDATE Journey SET startTime = " + time + " WHERE id = " + journey_id);
+
+			db.close()
+		},
+		end : function(journey_id, time){
+			var db = module.exports.getConnection();
+
+			db.run("UPDATE Journey SET endTime = " + time + " WHERE id = " + journey_id);
+
+			db.close()
+		},
+		getAll : function(callback){
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Journey", function(err, row){				
+				callback(row);		
+			});
+
+			db.close();
+		}
 	},
 
 	createTables : function()
@@ -213,8 +259,7 @@ module.exports = {
 
 			//Journey
 			db.run("CREATE TABLE if not exists Journey("
-				+ "id integer PRIMARY KEY AUTOINCREMENT,"
-				+ "name TEXT NOT NULL,"
+				+ "id integer PRIMARY KEY AUTOINCREMENT,"			
 				+ "fellowship integer NOT NULL,"
 				+ "supervisorPhone integer NOT NULL,"
 				+ "startTime integer NOT NULL CHECK(startTime < 2400 AND startTime > -1),"
