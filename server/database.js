@@ -70,7 +70,7 @@ module.exports = {
 		get : function(fellowship_id, callback){
 			var db = module.exports.getConnection();
 
-			db.each("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
+			db.get("SELECT * FROM Fellowship WHERE id = " + fellowship_id, function(err, row){				
 				callback(row);
 				//return phonenumber, fname, sname
 			});
@@ -110,7 +110,7 @@ module.exports = {
 			
 			var db = module.exports.getConnection();
 
-			db.each("SELECT * FROM Guardian", function(err, row){
+			db.each("SELECT * FROM Guardian WHERE phone = " + phone_num, function(err, row){
 				callback(row);
 				//return phonenumber, fname, sname
 			});
@@ -120,6 +120,15 @@ module.exports = {
 		auth : function(client_id){
 			//allowing child to join a group
 			//return nothing
+		},
+		getAll : function(callback){
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Guardian", function(err, row){				
+				callback(row);		
+			});
+
+			db.close();
 		}
 	},
 
@@ -127,8 +136,12 @@ module.exports = {
 		create : function(fname, sname, age, guardian_phone, callback){
 			var db = module.exports.getConnection()
 			
-			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?)");	
-			stmt.run([null, fname, sname, age, guardian_phone]);
+			var stmt = db.prepare("INSERT INTO Client VALUES (?,?,?,?,?,?)");	
+			stmt.run([null, fname, sname, age, guardian_phone, null], function(err, row){
+				db.get("SELECT last_insert_rowid()", function(err, row){				
+					callback(row["last_insert_rowid()"]);
+				});	
+			});
 
 			stmt.finalize();
 			
@@ -138,12 +151,23 @@ module.exports = {
 		},
 		login : function(client_id){
 			//return nothing
+		},
+		getAll : function(callback)
+		{
+			var db = module.exports.getConnection();
+
+			db.each("SELECT * FROM Client", function(err, row){				
+				callback(row);		
+			});
+
+			db.close();
 		}
 	},
 
 	journey : {
 		create : function(supervisorPhone, start_loc, end_loc, start_time, end_time, callback){
 			//return journey_id
+			
 		},
 		start : function(journey_id, time){},
 		end : function(journey_id, time){}
@@ -151,7 +175,7 @@ module.exports = {
 
 	createTables : function()
 	{
-		var db = this.getConnection();
+		var db = module.exports.getConnection();
 
 		db.serialize(function(){	
 			//Consider ON DELETE CASCADE for foreign keys
