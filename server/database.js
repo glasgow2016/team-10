@@ -205,7 +205,7 @@ module.exports = {
 
 			db.close();
 		},
-		addPoints(client_id, points){
+		addPoints : function (client_id, points){
 			var db = module.exports.getConnection();
 			db.run("UPDATE Client SET points = points  + " + points + " WHERE id = " + client_id);
 			db.close();
