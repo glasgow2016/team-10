@@ -1,0 +1,31 @@
+Intro
+gRoute encourages children to find a local group to walk to school with.
+
+By earning points as they walk, competition between groups will drive kids to nag their parents to let them walk and prove themselves top of the class. By earning extra points when more group members walk together, peer pressure between group members can encourage even greater openness to walking.
+
+A key factor in the modern school run is that parents appear to be reluctant to allow their kids to walk to school for fear of something bad happening on the way. 
+
+By assigning a trusted parent volunteer to supervise the journey, and helping the children complete road safety challenges this worry can be aleviated.
+
+By ditching the car and walking as part of a peer group, children are helping not only save the environment, but their own social skills and physical health.
+
+1 & 2) Child logs in to the system 
+
+3) They look at a map showing which local groups are available to join
+
+4) They choose a group and can see some details about the group, including who the trusted supervisor is. The child then requests to join the group.
+
+5) At this stage, their parents receive a text message, email or notification if they have downloaded the app. They can check who the supervisor is (a trusted parent of a classmate that they likely know in real life). They accept their childs request to join the group
+
+6)The child looks at their own dashboard, and sees a notification. There is a journey to school tomorrow!
+
+7) The journey shows the meeting time along with other information, including the daily road safety challenge
+
+8) The daily road safety challenge is a chance to earn bonus points for the group. A bank of challenges could be prepared with Brake before hand, and the supervisor will be provided with some information around the specific task highlighted. 
+
+9) When the journey ends, the supervisor checks the group in. Notifications are sent to the children's parents, confirming their child's safe arrival.
+The supervisor also scores the group for their performance in the daily challenge.
+
+10) Points are awarded! The children can check the app during or after school and see if they have reached a new level and how their group is doing compared to the rest of the class on the leaderboards
+
+11) Finally, an achievement system would reward consistent walkers, e.g. for walking 10 days in a row, for walking even though it is raining etc.
