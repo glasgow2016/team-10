@@ -121,11 +121,10 @@ module.exports = {
 			//allowing child to join a group
 			var db = module.exports.getConnection();
 
-			db.prepare("INSERT INTO ChildFellowshipAuth VALUES (?,?)");
+			var stmt = db.prepare("INSERT INTO ChildFellowshipAuth VALUES (?,?)");
 
-			db.get("SELECT * FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone", function(err, row){
-				console.log(row);
-				//db.run([client_id, row])
+			db.get("SELECT phone FROM Client INNER JOIN Guardian On Client.guardianPhone = Guardian.phone WHERE id = " + client_id, function(err, row){
+				stmt.run([client_id, row['phone']]);
 			});
 			
 
@@ -273,7 +272,7 @@ module.exports = {
 				+ ");"
 			);
 
-			//ChildGroupAuth
+			//ChildFellowshipAuth
 			db.run("CREATE TABLE if not exists ChildFellowshipAuth("
 				+ "child integer NOT NULL,"
 				+ "guardianPhone integer NOT NULL,"
@@ -287,4 +286,3 @@ module.exports = {
 		db.close();
 	}	
 }
-
